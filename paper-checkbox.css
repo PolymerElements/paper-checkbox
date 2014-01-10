@@ -26,6 +26,8 @@ license that can be found in the LICENSE file.
   left: -29px;
   width: 76px;
   height: 76px;
+  z-index: -1;
+  pointer-events: none;
 }
 
 #checkbox {
