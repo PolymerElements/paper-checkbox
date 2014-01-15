@@ -21,6 +21,7 @@ license that can be found in the LICENSE file.
   </template>
   <script>
     Polymer('paper-checkbox', {
+      toggleable: true,
       ready: function() {
         this.setAttribute('touch-action', 'none');
         this.$.checkbox.addEventListener('animationend', 
