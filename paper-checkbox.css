@@ -45,6 +45,7 @@ license that can be found in the LICENSE file.
 /* checkbox checked animations */
 #checkbox.checked.box {
   -webkit-animation: box-shrink 140ms ease-out forwards;
+  animation: box-shrink 140ms ease-out forwards;
 }
 
 @-webkit-keyframes box-shrink {
@@ -64,10 +65,30 @@ license that can be found in the LICENSE file.
   }
 }
 
+@keyframes box-shrink {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    top: 0px;
+    left: 0px;
+    width: 18px;
+    height: 18px;
+  }
+  100% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 13px;
+    left: 5px;
+    width: 4px;
+    height: 4px;
+  }
+}
+
 #checkbox.checked.checkmark {
   border-left: none;
   border-top: none;
   -webkit-animation: checkmark-expand 140ms ease-out forwards;
+  animation: checkmark-expand 140ms ease-out forwards;
 }
 
 @-webkit-keyframes checkmark-expand {
@@ -89,12 +110,35 @@ license that can be found in the LICENSE file.
   }
 }
 
+@keyframes checkmark-expand {
+  0% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 13px;
+    left: 5px;
+    width: 4px;
+    height: 4px;
+  }
+  100% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: -4px;
+    left: 6px; 
+    width: 10px;
+    height: 21px;
+    border-right: solid 2px #00bcd4;
+    border-bottom: solid 2px #00bcd4;
+  }
+}
+
 /* checkbox unchecked animations */
 #checkbox.unchecked.checkmark {
   -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
   border-left: none;
   border-top: none;
   -webkit-animation: checkmark-shrink 140ms ease-out forwards;
+  animation: checkmark-shrink 140ms ease-out forwards;
 }
 
 @-webkit-keyframes checkmark-shrink {
@@ -114,8 +158,26 @@ license that can be found in the LICENSE file.
   }
 }
 
+@keyframes checkmark-shrink {
+  0% {
+    top: -4px;
+    left: 6px; 
+    width: 10px;
+    height: 21px;
+    border-right: solid 2px #00bcd4;
+    border-bottom: solid 2px #00bcd4;
+  }
+  100% {
+    top: 13px;
+    left: 5px;
+    width: 4px;
+    height: 4px;
+  }
+}
+
 #checkbox.unchecked.box {
   -webkit-animation: box-expand 140ms ease-out forwards;
+  animation: box-expand 140ms ease-out forwards;
 }
 
 @-webkit-keyframes box-expand {
@@ -135,14 +197,31 @@ license that can be found in the LICENSE file.
   }
 }
 
+@keyframes box-expand {
+  0% {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 13px;
+    left: 5px;
+    width: 4px;
+    height: 4px;
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    top: 0px;
+    left: 0px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
 /* label */
 #checkboxLabel {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   padding-left: 8px;
-  font-size: 14px;
-  color: #333;
   z-index: 1;
 }
 
