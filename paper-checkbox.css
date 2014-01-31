@@ -39,7 +39,6 @@ license that can be found in the LICENSE file.
   width: 18px;
   height: 18px;
   border: solid 2px #666;
-  z-index: 1;
 }
 
 /* checkbox checked animations */
@@ -222,7 +221,6 @@ license that can be found in the LICENSE file.
   display: inline-block;
   vertical-align: middle;
   padding-left: 8px;
-  z-index: 1;
 }
 
 #checkboxLabel[hidden] {
