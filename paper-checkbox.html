@@ -4,8 +4,6 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
 
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-ink/paper-ink.html">
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <polymer-element name="paper-checkbox" extends="paper-radio-button">
@@ -14,37 +12,26 @@ license that can be found in the LICENSE file.
     
     <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}">
       <paper-ink id="ink" color="{{checked ? inkOnColor : inkOffColor}}" duration="{{duration}}"></paper-ink>
-      <div id="checkbox"></div>
+      <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
     </div>
     <div id="checkboxLabel" hidden?="{{!label}}">{{label}}<content></content></div>
     
   </template>
   <script>
     Polymer('paper-checkbox', {
-      toggleable: true,
-      ready: function() {
-        this.setAttribute('touch-action', 'none');
-        this.$.checkbox.addEventListener('animationend', 
-            this.checkboxAnimationEnd.bind(this));
-        this.$.checkbox.addEventListener('webkitAnimationEnd', 
-            this.checkboxAnimationEnd.bind(this));
-      },
+      toggles: true,
       checkedChanged: function() {
-        this.$.checkbox.classList.toggle('checked', this.checked);
-        this.$.checkbox.classList.toggle('unchecked', !this.checked);
-        this.morph();
+        with (this.$.checkbox.classList) {
+          toggle('checked', this.checked);
+          toggle('unchecked', !this.checked);
+          toggle('checkmark', !this.checked);
+          toggle('box', this.checked);
+        }
       },
       checkboxAnimationEnd: function() {
-        this.morph(true);
-      },
-      morph: function(ended) {
-        this.$.checkbox.classList.remove('box');
-        this.$.checkbox.classList.remove('checkmark');
-        var b = ended ? this.checked : !this.checked;
-        if (b) {
-          this.$.checkbox.classList.add('checkmark');
-        } else {
-          this.$.checkbox.classList.add('box');
+        with (this.$.checkbox.classList) {
+          toggle('checkmark', this.checked);
+          toggle('box', !this.checked);
         }
       }
     });
