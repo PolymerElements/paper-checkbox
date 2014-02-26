@@ -25,13 +25,13 @@ license that can be found in the LICENSE file.
 <polymer-element name="paper-checkbox" extends="paper-radio-button">
   <template>
     <link rel="stylesheet" href="paper-checkbox.css">
-    
-    <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}">
+
+    <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" role="checkbox" aria-checked="{{checked}}" aria-label="{{label}}" tabindex="0">
       <paper-ink id="ink" color="{{checked ? inkOnColor : inkOffColor}}" duration="{{duration}}"></paper-ink>
       <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
     </div>
     <div id="checkboxLabel" hidden?="{{!label}}">{{label}}<content></content></div>
-    
+
   </template>
   <script>
     Polymer('paper-checkbox', {
