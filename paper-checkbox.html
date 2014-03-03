@@ -22,11 +22,11 @@ license that can be found in the LICENSE file.
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
-<polymer-element name="paper-checkbox" extends="paper-radio-button">
+<polymer-element name="paper-checkbox" extends="paper-radio-button" role="checkbox">
   <template>
     <link rel="stylesheet" href="paper-checkbox.css">
 
-    <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" role="checkbox" aria-checked="{{checked}}" aria-label="{{label}}" tabindex="0">
+    <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" >
       <paper-ink id="ink" color="{{checked ? inkOnColor : inkOffColor}}" duration="{{duration}}"></paper-ink>
       <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
     </div>
@@ -43,6 +43,7 @@ license that can be found in the LICENSE file.
           toggle('checkmark', !this.checked);
           toggle('box', this.checked);
         }
+        this.setAttribute('aria-checked', this.checked ? 'true': 'false');
       },
       checkboxAnimationEnd: function() {
         with (this.$.checkbox.classList) {
