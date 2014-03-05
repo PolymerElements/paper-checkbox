@@ -6,36 +6,50 @@ license that can be found in the LICENSE file.
 
 <!--
 /**
- * @module Quantum Paper Elements
- */
-/**
- * paper-checkbox
+ * @group Quantum Paper Elements
+ *
+ * `paper-checkbox` is a button that can be either checked or unchecked.  User
+ * can tap the checkbox to check or uncheck it.  Usually you use checkboxes
+ * to allow user to select multiple options from a set.  If you have a single
+ * ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
+ * instead.
  *
  * Example:
  *
  *    <paper-checkbox></paper-checkbox>
  *
- * @class paper-checkbox
- * @author The Polymer Authors
+ *    <paper-checkbox checked></paper-checkbox>
+ *
+ * @element paper-checkbox
+ * @homepage github.io
  */
 -->
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <polymer-element name="paper-checkbox" extends="paper-radio-button" role="checkbox">
+
   <template>
+  
     <link rel="stylesheet" href="paper-checkbox.css">
 
     <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" >
+    
       <paper-ink id="ink" color="{{checked ? inkOnColor : inkOffColor}}" duration="{{duration}}"></paper-ink>
       <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
+      
     </div>
+    
     <div id="checkboxLabel" hidden?="{{!label}}">{{label}}<content></content></div>
 
   </template>
+  
   <script>
+  
     Polymer('paper-checkbox', {
+      
       toggles: true,
+      
       checkedChanged: function() {
         with (this.$.checkbox.classList) {
           toggle('checked', this.checked);
@@ -45,12 +59,16 @@ license that can be found in the LICENSE file.
         }
         this.setAttribute('aria-checked', this.checked ? 'true': 'false');
       },
+      
       checkboxAnimationEnd: function() {
         with (this.$.checkbox.classList) {
           toggle('checkmark', this.checked);
           toggle('box', !this.checked);
         }
       }
+      
     });
+    
   </script>
+  
 </polymer-element>
