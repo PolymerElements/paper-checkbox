@@ -62,8 +62,8 @@ license that can be found in the LICENSE file.
       
       checkboxAnimationEnd: function() {
         with (this.$.checkbox.classList) {
-          toggle('checkmark', this.checked);
-          toggle('box', !this.checked);
+          toggle('checkmark', this.checked && !contains('checkmark'));
+          toggle('box', !this.checked && !contains('box'));
         }
       }
       

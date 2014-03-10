@@ -17,8 +17,6 @@ license that can be found in the LICENSE file.
   position: relative;
   width: 18px;
   height: 18px;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
 }
 
 #checkboxContainer.labeled {
@@ -132,6 +130,19 @@ license that can be found in the LICENSE file.
     border-right: solid 2px #00bcd4;
     border-bottom: solid 2px #00bcd4;
   }
+}
+
+#checkbox.checked {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  top: -4px;
+  left: 6px;
+  width: 10px;
+  height: 21px;
+  border-top: none;
+  border-right: solid 2px #00bcd4;
+  border-bottom: solid 2px #00bcd4;
+  border-left: none;
 }
 
 /* checkbox unchecked animations */
