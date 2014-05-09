@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 :host {
   display: inline-block;
-  cursor: pointer;
 }
 
 :host(:focus) {
@@ -20,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   position: relative;
   width: 18px;
   height: 18px;
+  cursor: pointer;
 }
 
 #checkboxContainer.labeled {
@@ -246,6 +246,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: inline-block;
   vertical-align: middle;
   padding-left: 8px;
+  pointer-events: none;
 }
 
 #checkboxLabel[hidden] {
