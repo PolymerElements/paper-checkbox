@@ -8,24 +8,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <!--
-/**
- * @group Quantum Paper Elements
- *
- * `paper-checkbox` is a button that can be either checked or unchecked.  User
- * can tap the checkbox to check or uncheck it.  Usually you use checkboxes
- * to allow user to select multiple options from a set.  If you have a single
- * ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
- * instead.
- *
- * Example:
- *
- *     <paper-checkbox></paper-checkbox>
- *
- *     <paper-checkbox checked></paper-checkbox>
- *
- * @element paper-checkbox
- * @homepage github.io
- */
+`paper-checkbox` is a button that can be either checked or unchecked.  User
+can tap the checkbox to check or uncheck it.  Usually you use checkboxes
+to allow user to select multiple options from a set.  If you have a single
+ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
+instead.
+
+Example:
+
+    <paper-checkbox></paper-checkbox>
+
+    <paper-checkbox checked></paper-checkbox>
+    
+Styling checkbox:
+
+To change the checkbox checked color:
+
+    paper-checkbox::shadow #checkbox.checked {
+      border-color: #4285f4;
+    }
+    
+To change the ink color for checked state:
+
+    paper-checkbox[checked]::shadow #ink {
+      color: #4285f4;
+    }
+    
+To change the checbox unchecked color:
+
+    paper-checkbox::shadow #checkbox {
+      border-color: #b5b5b5;
+    }
+
+To change the ink color for unchecked state:
+
+    paper-checkbox::shadow #ink {
+      color: #b5b5b5;
+    }
+
+@group Quantum Paper Elements
+@element paper-checkbox
+@homepage github.io
 -->
 
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
@@ -38,7 +61,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" >
     
-      <paper-ink id="ink" color="{{checked ? inkOnColor : inkOffColor}}" duration="{{duration}}"></paper-ink>
+      <paper-ripple id="ink" class="circle recenteringTouch"></paper-ripple>
+       
       <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
       
     </div>

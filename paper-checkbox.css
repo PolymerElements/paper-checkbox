@@ -33,7 +33,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: -29px;
   width: 76px;
   height: 76px;
-  pointer-events: none;
+  color: #5a5f5a;
+}
+
+:host([checked]) #ink {
+  color: #0f9d58;
 }
 
 #checkbox {
@@ -43,7 +47,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   left: 0px; 
   width: 18px;
   height: 18px;
-  border: solid 2px #666;
+  border: solid 2px;
+  border-color: #5a5a5a;
+  pointer-events: none;
 }
 
 /* checkbox checked animations */
@@ -109,8 +115,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     left: 6px; 
     width: 10px;
     height: 21px;
-    border-right: solid 2px #00bcd4;
-    border-bottom: solid 2px #00bcd4;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
   }
 }
 
@@ -130,8 +136,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     left: 6px; 
     width: 10px;
     height: 21px;
-    border-right: solid 2px #00bcd4;
-    border-bottom: solid 2px #00bcd4;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
   }
 }
 
@@ -143,9 +149,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 10px;
   height: 21px;
   border-top: none;
-  border-right: solid 2px #00bcd4;
-  border-bottom: solid 2px #00bcd4;
   border-left: none;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-color: #0f9d58;
 }
 
 /* checkbox unchecked animations */
@@ -164,8 +171,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     left: 6px; 
     width: 10px;
     height: 21px;
-    border-right: solid 2px #00bcd4;
-    border-bottom: solid 2px #00bcd4;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
   }
   100% {
     top: 13px;
@@ -181,8 +188,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     left: 6px; 
     width: 10px;
     height: 21px;
-    border-right: solid 2px #00bcd4;
-    border-bottom: solid 2px #00bcd4;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
   }
   100% {
     top: 13px;

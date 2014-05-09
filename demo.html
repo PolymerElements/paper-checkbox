@@ -1,40 +1,105 @@
 <!doctype html>
 <html>
-  <head>
-    <title>paper-checkbox</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    
-    <script src="../platform/platform.js"></script>
-    
-    <link rel="import" href="paper-checkbox.html">
-    
-    <style>
-    
-      body {
-        font-family: Roboto2, 'Helvetica Neue', Helvetica, Arial;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: rgba(0,0,0,0);
-        -webkit-touch-callout: none;
-      }
-      
-      paper-checkbox {
-        padding: 30px;
-      }
-      
-    </style>
-    
-  </head>
+<head>
+  <title>paper-checkbox</title>
   
-  <body unresolved>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <script src="../platform/platform.js"></script>
+  
+  <link rel="import" href="paper-checkbox.html">
+  <link rel="import" href="../font-roboto2/roboto2.html">
+  <link rel="import" href="../core-layout/core-layout.html">
+  
+  <style shim-shadowdom>
+  
+    body {
+      font-family: Roboto2, 'Helvetica Neue', Helvetica, Arial;
+      padding: 20px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+    }
     
-      <paper-checkbox label="Apple"></paper-checkbox><br>
-      <paper-checkbox label="Orange"></paper-checkbox><br>
-      <paper-checkbox label="Grape"></paper-checkbox>
+    paper-checkbox {
+      padding: 20px;
+    }
     
-  </body>
+    section {
+      width: 300px;
+      padding: 20px;
+    }
+    
+    paper-checkbox.blue[checked]::shadow #ink {
+      color: #4285f4;
+    }
+    
+    paper-checkbox.blue::shadow #checkbox.checked {
+      border-color: #4285f4;
+    }
+    
+  </style>
+  
+</head>
+<body unresolved>
+  
+  <core-layout>
+    <paper-checkbox></paper-checkbox>
+    <core-layout vertical>
+      <h4>Notifications</h4>
+      <div>Notify me about updates to apps or games that I've downloaded</div>
+    </core-layout>
+  </core-layout>
+  
+  <br>
+  
+  <core-layout>
+    <paper-checkbox checked></paper-checkbox>
+    <core-layout vertical>
+      <h4>Auto-updates</h4>
+      <div>Auto-update apps over wifi only</div>
+    </core-layout>
+  </core-layout>
+  
+  <br>
+  
+  <core-layout>
+    <paper-checkbox></paper-checkbox>
+    <core-layout vertical>
+      <h4>Clear search history</h4>
+      <div>Remove all the searches you have ever performed</div>
+    </core-layout>
+  </core-layout>
+  
+  <br>
+  <br>
+  <br>
+  
+  <section>
+  
+    <h3>Sound</h3>
+  
+    <core-layout class="core-align-center">
+      <div core-flex>Touch sounds</div>
+      <paper-checkbox class="blue" checked></paper-checkbox>
+    </core-layout>
+    
+    <core-layout class="core-align-center">
+      <div core-flex>Screen lock sound</div>
+      <paper-checkbox class="blue"></paper-checkbox>
+    </core-layout>
+    
+    <core-layout class="core-align-center">
+      <div core-flex>Vibrate on touch</div>
+      <paper-checkbox class="blue"></paper-checkbox>
+    </core-layout>
+  
+  </section>
+  
+</body>
 </html>
