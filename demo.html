@@ -11,7 +11,6 @@
   
   <link rel="import" href="paper-checkbox.html">
   <link rel="import" href="../font-roboto2/roboto2.html">
-  <link rel="import" href="../core-layout/core-layout.html">
   
   <style shim-shadowdom>
   
@@ -48,33 +47,33 @@
 </head>
 <body unresolved>
   
-  <core-layout>
+  <div horizontal layout>
     <paper-checkbox></paper-checkbox>
-    <core-layout vertical>
+    <div vertical layout>
       <h4>Notifications</h4>
       <div>Notify me about updates to apps or games that I've downloaded</div>
-    </core-layout>
-  </core-layout>
+    </div>
+  </div>
   
   <br>
   
-  <core-layout>
+  <div horizontal layout>
     <paper-checkbox checked></paper-checkbox>
-    <core-layout vertical>
+    <div vertical layout>
       <h4>Auto-updates</h4>
       <div>Auto-update apps over wifi only</div>
-    </core-layout>
-  </core-layout>
+    </div>
+  </div>
   
   <br>
   
-  <core-layout>
+  <div horizontal layout>
     <paper-checkbox></paper-checkbox>
-    <core-layout vertical>
+    <div vertical layout>
       <h4>Clear search history</h4>
       <div>Remove all the searches you have ever performed</div>
-    </core-layout>
-  </core-layout>
+    </div>
+  </div>
   
   <br>
   <br>
@@ -84,20 +83,20 @@
   
     <h3>Sound</h3>
   
-    <core-layout class="core-align-center">
-      <div core-flex>Touch sounds</div>
+    <div center horizontal layout>
+      <div flex>Touch sounds</div>
       <paper-checkbox class="blue" checked></paper-checkbox>
-    </core-layout>
+    </div>
     
-    <core-layout class="core-align-center">
-      <div core-flex>Screen lock sound</div>
+    <div center horizontal layout>
+      <div flex>Screen lock sound</div>
       <paper-checkbox class="blue"></paper-checkbox>
-    </core-layout>
+    </div>
     
-    <core-layout class="core-align-center">
-      <div core-flex>Vibrate on touch</div>
+    <div center horizontal layout>
+      <div flex>Vibrate on touch</div>
       <paper-checkbox class="blue"></paper-checkbox>
-    </core-layout>
+    </div>
   
   </section>
   
