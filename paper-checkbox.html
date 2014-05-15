@@ -22,28 +22,28 @@ Example:
     
 Styling checkbox:
 
+To change the ink color for checked state:
+
+    paper-checkbox::shadow #ink[checked] {
+      color: #4285f4;
+    }
+    
 To change the checkbox checked color:
 
     paper-checkbox::shadow #checkbox.checked {
       border-color: #4285f4;
-    }
-    
-To change the ink color for checked state:
-
-    paper-checkbox[checked]::shadow #ink {
-      color: #4285f4;
-    }
-    
-To change the checbox unchecked color:
-
-    paper-checkbox::shadow #checkbox {
-      border-color: #b5b5b5;
     }
 
 To change the ink color for unchecked state:
 
     paper-checkbox::shadow #ink {
       color: #b5b5b5;
+    }
+
+To change the checbox unchecked color:
+
+    paper-checkbox::shadow #checkbox {
+      border-color: #b5b5b5;
     }
 
 @group Quantum Paper Elements
@@ -61,7 +61,7 @@ To change the ink color for unchecked state:
 
   <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" >
   
-    <paper-ripple id="ink" class="circle recenteringTouch"></paper-ripple>
+    <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{!checked}}"></paper-ripple>
      
     <div id="checkbox" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
     

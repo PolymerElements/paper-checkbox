@@ -36,7 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   color: #5a5f5a;
 }
 
-:host([checked]) #ink {
+#ink[checked] {
   color: #0f9d58;
 }
 
