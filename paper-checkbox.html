@@ -81,25 +81,23 @@ To change the checbox unchecked color:
      */
     
     toggles: true,
-    
+
     checkedChanged: function() {
-      with (this.$.checkbox.classList) {
-        toggle('checked', this.checked);
-        toggle('unchecked', !this.checked);
-        toggle('checkmark', !this.checked);
-        toggle('box', this.checked);
-      }
+      var cl = this.$.checkbox.classList;
+      cl.toggle('checked', this.checked);
+      cl.toggle('unchecked', !this.checked);
+      cl.toggle('checkmark', !this.checked);
+      cl.toggle('box', this.checked);
       this.setAttribute('aria-checked', this.checked ? 'true': 'false');
       this.fire('change');
     },
-    
+
     checkboxAnimationEnd: function() {
-      with (this.$.checkbox.classList) {
-        toggle('checkmark', this.checked && !contains('checkmark'));
-        toggle('box', !this.checked && !contains('box'));
-      }
+      var cl = this.$.checkbox.classList;
+      cl.toggle('checkmark', this.checked && !cl.contains('checkmark'));
+      cl.toggle('box', !this.checked && !cl.contains('box'));
     }
-    
+
   });
   
 </script>
