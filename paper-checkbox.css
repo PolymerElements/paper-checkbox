@@ -21,6 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   width: 18px;
   height: 18px;
   cursor: pointer;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #checkboxContainer.labeled {
