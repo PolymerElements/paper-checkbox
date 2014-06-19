@@ -2,7 +2,7 @@
   "name": "paper-checkbox",
   "private": true,
   "dependencies": {
-    "font-roboto2": "Polymer/font-roboto2#master",
+    "font-roboto": "Polymer/font-roboto#master",
     "paper-radio-button": "Polymer/paper-radio-button#master"
   }
 }
