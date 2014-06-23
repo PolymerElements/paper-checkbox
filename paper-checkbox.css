@@ -256,3 +256,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #checkboxLabel[hidden] {
   display: none;
 }
+
+/* disabled state */
+:host([disabled]) {
+  pointer-events: none;
+}
+
+:host([disabled]) #checkbox {
+  border-color: #eaeaea !important;
+}
