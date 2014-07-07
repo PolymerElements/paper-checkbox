@@ -57,6 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 /* checkbox checked animations */
 #checkbox.checked.box {
+  border: solid 2px;
   -webkit-animation: box-shrink 140ms ease-out forwards;
   animation: box-shrink 140ms ease-out forwards;
 }
