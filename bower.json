@@ -6,7 +6,6 @@
     "paper-radio-button": "Polymer/paper-radio-button#master"
   },
   "ignore": [
-    "paper-checkbox.externs.js",
-    "eventtype.js"
+    "externs/**"
   ]
 }
