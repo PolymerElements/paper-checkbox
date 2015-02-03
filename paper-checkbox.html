@@ -64,9 +64,9 @@ To change the checbox unchecked color:
   
     <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{!checked}}"></paper-ripple>
      
-    <div id="checkbox">
-      <div id="checkmark" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
-    </div>
+  	<div id="checkbox" class="{{ {checked: checked} | tokenList }}">
+  		<div id="checkmark" class="{{ {hidden: !checked} | tokenList }}" on-animationend="{{}}" on-webkitanimationend="{{}}"></div>
+  	</div>
     
   </div>
   
@@ -92,15 +92,8 @@ To change the checbox unchecked color:
     toggles: true,
 
     checkedChanged: function() {
-      this.$.checkbox.classList.toggle('checked', this.checked);
       this.setAttribute('aria-checked', this.checked ? 'true': 'false');
-      this.$.checkmark.classList.toggle('hidden', !this.checked);
       this.fire('core-change');
-    },
-
-    checkboxAnimationEnd: function() {
-      var cl = this.$.checkmark.classList;
-      cl.toggle('hidden', !this.checked && cl.contains('hidden'));
     }
 
   });
