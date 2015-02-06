@@ -6,7 +6,6 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <!--
 `paper-checkbox` is a button that can be either checked or unchecked.  User
 can tap the checkbox to check or uncheck it.  Usually you use checkboxes
@@ -19,7 +18,7 @@ Example:
     <paper-checkbox></paper-checkbox>
 
     <paper-checkbox checked></paper-checkbox>
-    
+
 Styling checkbox:
 
 To change the ink color for checked state:
@@ -27,7 +26,7 @@ To change the ink color for checked state:
     paper-checkbox::shadow #ink[checked] {
       color: #4285f4;
     }
-    
+
 To change the checkbox checked color:
 
     paper-checkbox::shadow #checkbox.checked {
@@ -56,54 +55,47 @@ To change the checbox unchecked color:
 <link rel="import" href="../paper-radio-button/paper-radio-button.html">
 
 <polymer-element name="paper-checkbox" extends="paper-radio-button" role="checkbox">
-<template>
+  <template>
 
-  <link rel="stylesheet" href="paper-checkbox.css">
+    <link rel="stylesheet" href="paper-checkbox.css">
 
-  <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}" >
-  
-    <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{!checked}}"></paper-ripple>
-     
-    <div id="checkbox">
-      <div id="checkmark" on-animationend="{{checkboxAnimationEnd}}" on-webkitAnimationEnd="{{checkboxAnimationEnd}}"></div>
+    <div id="checkboxContainer" class="{{ {labeled: label} | tokenList }}">
+
+      <paper-ripple id="ink" class="circle recenteringTouch" checked?="{{!checked}}"></paper-ripple>
+
+      <div id="checkbox" class="{{ {checked: checked} | tokenList }}">
+        <div id="checkmark" class="{{ {hidden: !checked} | tokenList }}"></div>
+      </div>
+
     </div>
-    
-  </div>
-  
-  <div id="checkboxLabel" hidden?="{{!label}}">{{label}}<content></content></div>
 
-</template>
-<script>
+    <div id="checkboxLabel" hidden?="{{!label}}">{{label}}<content></content></div>
 
-  Polymer('paper-checkbox', {
-    
-    /**
-     * Fired when the checked state changes due to user interaction.
-     *
-     * @event change
-     */
-     
-    /**
-     * Fired when the checked state changes.
-     *
-     * @event core-change
-     */
-    
-    toggles: true,
+  </template>
+  <script>
 
-    checkedChanged: function() {
-      this.$.checkbox.classList.toggle('checked', this.checked);
-      this.setAttribute('aria-checked', this.checked ? 'true': 'false');
-      this.$.checkmark.classList.toggle('hidden', !this.checked);
-      this.fire('core-change');
-    },
+    Polymer('paper-checkbox', {
 
-    checkboxAnimationEnd: function() {
-      var cl = this.$.checkmark.classList;
-      cl.toggle('hidden', !this.checked && cl.contains('hidden'));
-    }
+      /**
+       * Fired when the checked state changes due to user interaction.
+       *
+       * @event change
+       */
 
-  });
-  
-</script>
+      /**
+       * Fired when the checked state changes.
+       *
+       * @event core-change
+       */
+
+      toggles: true,
+
+      checkedChanged: function () {
+        this.setAttribute('aria-checked', this.checked ? 'true' : 'false');
+        this.fire('core-change');
+      }
+
+    });
+
+  </script>
 </polymer-element>
