@@ -2,7 +2,8 @@
   "name": "paper-checkbox",
   "private": true,
   "dependencies": {
-    "paper-radio-button": "Polymer/paper-radio-button#master"
+    "paper-radio-button": "Polymer/paper-radio-button#master",
+    "polymer": "Polymer/polymer#master"
   },
   "ignore": [
     "externs/**"
