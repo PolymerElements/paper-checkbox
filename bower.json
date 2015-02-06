@@ -6,7 +6,8 @@
     "polymer": "Polymer/polymer#master"
   },
   "ignore": [
-    "externs/**"
+    "externs/**",
+    ".gitignore"
   ],
   "devDependencies": {
     "font-roboto": "Polymer/font-roboto#~0.5.4",
