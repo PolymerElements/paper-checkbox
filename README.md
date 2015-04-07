@@ -1,4 +1,4 @@
 paper-checkbox
 ===================
 
-See the [component page](http://www.polymer-project.org/docs/elements/paper-elements.html#paper-checkbox) for more information.
+See the [component page](https://www.polymer-project.org/0.5/docs/elements/paper-checkbox.html) for more information.
