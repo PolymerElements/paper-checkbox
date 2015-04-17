@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
@@ -12,46 +12,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   white-space: nowrap;
 }
 
-:host(:focus) {
-  outline: 0;
-}
-
 .hidden {
   display: none;
 }
 
 #checkboxContainer {
+  display: inline-block;
   position: relative;
   width: 18px;
   height: 18px;
   cursor: pointer;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-}
-
-#checkboxContainer.labeled {
-  display: inline-block;
   vertical-align: middle;
 }
 
-#ink {
+:host #ink {
   position: absolute;
   top: -15px;
   left: -15px;
   width: 48px;
   height: 48px;
-  color: #5a5f5a;
+  color: var(--paper-checkbox-unchecked-ink-color);
 }
 
-#ink[checked] {
-  color: #B2DFDB;
+:host #ink[checked] {
+  color: var(--paper-checkbox-checked-ink-color);
 }
 
-#checkbox {
+:host #checkbox {
   position: relative;
   box-sizing: border-box;
   height: 100%;
-  border: solid 2px #5a5a5a;
+  border: solid 2px;
+  border-color: var(--paper-checkbox-unchecked-color);
   border-radius: 2px;
   pointer-events: none;
   -webkit-transition: background-color 140ms, border-color 140ms;
@@ -59,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 /* checkbox checked animations */
-:host([checked]) #checkmark {
+#checkbox.checked #checkmark {
   -webkit-animation: checkmark-expand 140ms ease-out forwards;
   animation: checkmark-expand 140ms ease-out forwards;
 }
@@ -94,12 +88,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 }
 
-#checkbox.checked {
-  background-color: #009688;
-  border-color: #009688;
+:host #checkbox.checked {
+  background-color: var(--paper-checkbox-checked-color);
+  border-color: var(--paper-checkbox-checked-color);
 }
 
-#checkmark {
+:host #checkmark {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
   position: absolute;
@@ -136,9 +130,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 :host([disabled]) #checkbox {
   opacity: 0.33;
-  border-color: #5a5a5a;
+  border-color: var(--paper-checkbox-unchecked-color);
 }
 
 :host([disabled][checked]) #checkbox {
-  background-color: #5a5a5a;
+  background-color: var(--paper-checkbox-unchecked-color);
 }

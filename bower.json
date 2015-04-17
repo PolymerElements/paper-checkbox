@@ -1,16 +1,34 @@
 {
   "name": "paper-checkbox",
+  "version": "0.8.0",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "main": "index.html",
   "private": true,
-  "dependencies": {
-    "paper-radio-button": "Polymer/paper-radio-button#master",
-    "polymer": "Polymer/polymer#master"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-checkbox"
   },
+  "license": "MIT",
+  "homepage": "https://github.com/PolymerElements/paper-checkbox",
   "ignore": [
-    "externs/**",
-    ".gitignore"
   ],
   "devDependencies": {
-    "font-roboto": "Polymer/font-roboto#~0.5.4",
-    "core-label": "Polymer/core-label#~0.5.4"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#~0.6.1",
+    "web-component-tester": "Polymer/web-component-tester#^2.2.3",
+    "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.8.0",
+    "test-fixture": "PolymerElements/test-fixture#^0.8.0",
+    "core-focusable": "polymer/core-focusable#0.8-preview"
+  },
+  "dependencies": {
+    "polymer": "polymer/polymer#v0.8.0-rc.4",
+    "paper-ripple": "Polymer/paper-ripple#0.8-preview",
+    "paper-styles": "PolymerElements/paper-styles#^0.8.0"
   }
 }
