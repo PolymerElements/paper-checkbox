@@ -27,7 +27,7 @@
     "core-focusable": "polymer/core-focusable#0.8-preview"
   },
   "dependencies": {
-    "polymer": "polymer/polymer#v0.8.0-rc.4",
+    "polymer": "polymer/polymer#v0.8.0-rc.5",
     "paper-ripple": "Polymer/paper-ripple#0.8-preview",
     "paper-styles": "PolymerElements/paper-styles#^0.8.0"
   }
