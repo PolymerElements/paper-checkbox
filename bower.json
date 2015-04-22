@@ -24,11 +24,11 @@
     "web-component-tester": "Polymer/web-component-tester#^2.2.3",
     "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^0.8.0",
     "test-fixture": "PolymerElements/test-fixture#^0.8.0",
-    "core-focusable": "polymer/core-focusable#0.8-preview"
+    "iron-test-helpers": "PolymerElements/iron-test-helpers#^0.8.0"
   },
   "dependencies": {
     "polymer": "polymer/polymer#v0.8.0-rc.6",
-    "paper-ripple": "Polymer/paper-ripple#0.8-preview",
+    "paper-ripple": "PolymerElements/paper-ripple#^0.8.0",
     "paper-styles": "PolymerElements/paper-styles#^0.8.0"
   }
 }
