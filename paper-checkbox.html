@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-behaviors/paper-button-behavior.html">
+<link rel="import" href="../paper-behaviors/paper-radio-button-behavior.html">
 
 <!--
 `paper-checkbox` is a button that can be either checked or unchecked.  User
@@ -44,7 +44,6 @@ Styling a checkbox:
 @class paper-checkbox
 -->
 
-/* TODO: This needs to use core-focusable when it's ready. */
 <dom-module id="paper-checkbox">
   <style is="x-style">
     * {
@@ -80,7 +79,7 @@ Styling a checkbox:
     enableCustomStyleProperties: true,
 
     behaviors: [
-      Polymer.PaperButtonBehavior
+      Polymer.PaperRadioButtonBehavior
     ],
 
     hostAttributes: {
