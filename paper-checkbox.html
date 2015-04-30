@@ -116,20 +116,21 @@ Styling a checkbox:
       },
 
       /**
-       * If true, the user cannot interact with this element.
+       * If true, the button toggles the active state with each tap or press
+       * of the spacebar.
        *
-       * @attribute disabled
+       * @attribute toggles
        * @type boolean
-       * @default false
+       * @default true
        */
-      disabled: {
-        type: Boolean
+      toggles: {
+        type: Boolean,
+        value: true,
+        reflectToAttribute: true
       }
     },
 
     ready: function() {
-      this.toggles = true;
-
       if (this.$.checkboxLabel.textContent == '') {
         this.$.checkboxLabel.hidden = true;
       } else {
