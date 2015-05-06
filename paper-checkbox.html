@@ -28,7 +28,7 @@ Example:
 
 Styling a checkbox:
 
-<style is="x-style">
+<style is="custom-style">
   * {
     /* Unhecked state colors. */
     --paper-checkbox-unchecked-color: #5a5a5a;
@@ -45,7 +45,7 @@ Styling a checkbox:
 -->
 
 <dom-module id="paper-checkbox">
-  <style is="x-style">
+  <style is="custom-style">
     * {
       --paper-checkbox-unchecked-color: var(--primary-text-color);
       --paper-checkbox-unchecked-ink-color: var(--primary-text-color);
@@ -74,9 +74,6 @@ Styling a checkbox:
 <script>
   Polymer({
     is: 'paper-checkbox',
-
-    // The custom properties shim is currently an opt-in feature.
-    enableCustomStyleProperties: true,
 
     behaviors: [
       Polymer.PaperRadioButtonBehavior
