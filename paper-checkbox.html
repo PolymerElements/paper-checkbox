@@ -43,18 +43,17 @@ Styling a checkbox:
 @group Paper Elements
 @class paper-checkbox
 -->
+<style is="custom-style">
+  * {
+    --paper-checkbox-unchecked-color: var(--primary-text-color);
+    --paper-checkbox-unchecked-ink-color: var(--primary-text-color);
+
+    --paper-checkbox-checked-color: var(--default-primary-color);
+    --paper-checkbox-checked-ink-color: var(--default-primary-color);
+  }
+</style>
 
 <dom-module id="paper-checkbox">
-  <style is="custom-style">
-    * {
-      --paper-checkbox-unchecked-color: var(--primary-text-color);
-      --paper-checkbox-unchecked-ink-color: var(--primary-text-color);
-
-      --paper-checkbox-checked-color: var(--default-primary-color);
-      --paper-checkbox-checked-ink-color: var(--default-primary-color);
-    }
-  </style>
-
   <link rel="import" type="css" href="paper-checkbox.css">
 
   <template>
