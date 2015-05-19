@@ -37,6 +37,9 @@ Styling a checkbox:
     /* Checked state colors. */
     --paper-checkbox-checked-color: #009688;
     --paper-checkbox-checked-ink-color: #009688;
+
+    /* Label color. */
+    --paper-checkbox-label-color: #009987;
   }
 </style>
 
@@ -50,6 +53,8 @@ Styling a checkbox:
 
     --paper-checkbox-checked-color: var(--default-primary-color);
     --paper-checkbox-checked-ink-color: var(--default-primary-color);
+
+    --paper-checkbox-label-color: var(--primary-text-color);
   }
 </style>
 
@@ -136,6 +141,9 @@ Styling a checkbox:
 
       // button-behavior hook
       _buttonStateChanged: function() {
+        if (this.disabled) {
+          return;
+        }
         this.checked = this.active;
       },
 

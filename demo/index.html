@@ -29,6 +29,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         --paper-checkbox-checked-color: var(--accent-color);
         --paper-checkbox-checked-ink-color: var(--accent-color);
+
+        --paper-checkbox-label-color: #009987;
       }
 
       .note {
@@ -44,6 +46,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <body>
     <section>
       <div>
+        <paper-checkbox></paper-checkbox>
+        <paper-checkbox checked></paper-checkbox>
+        <paper-checkbox disabled></paper-checkbox>
+        <paper-checkbox disabled checked></paper-checkbox>
+
+        <br>
+
         <paper-checkbox><h4>Notifications</h4></paper-checkbox>
         <div class="note">Notify me about updates to apps or games that I've downloaded</div>
 
