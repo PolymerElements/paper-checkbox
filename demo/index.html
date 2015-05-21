@@ -17,82 +17,80 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="apple-mobile-web-app-capable" content="yes">
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../../iron-flex-layout/classes/iron-flex-layout.html">
+    <link rel="import" href="../../paper-styles/paper-styles.html">
+    <link rel="import" href="../../paper-styles/demo-pages.html">
     <link rel="import" href="../paper-checkbox.html">
 
-    <link rel="stylesheet" href="../../paper-styles/demo.css">
-
     <style is="custom-style">
+
+      paper-checkbox {
+        display: block;
+        margin-bottom: 40px;
+      }
+
       paper-checkbox.blue {
-        --paper-checkbox-unchecked-color: var(--dark-primary-color);
-        --paper-checkbox-unchecked-ink-color: var(--dark-primary-color);
-
-        --paper-checkbox-checked-color: var(--accent-color);
-        --paper-checkbox-checked-ink-color: var(--accent-color);
-
-        --paper-checkbox-label-color: #009987;
+        --paper-checkbox-checked-color: var(--paper-light-blue-500);
+        --paper-checkbox-checked-ink-color: var(--paper-light-blue-500);
+        --paper-checkbox-unchecked-color: var(--paper-light-blue-900);
+        --paper-checkbox-unchecked-ink-color: var(--paper-light-blue-900);
       }
 
-      .note {
-        padding-left: 30px;
+      paper-checkbox.red {
+        --paper-checkbox-checked-color: var(--paper-red-500);
+        --paper-checkbox-checked-ink-color: var(--paper-red-500);
+        --paper-checkbox-unchecked-color: var(--paper-red-900);
+        --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
       }
 
-      section {
-        width: 300px;
+      paper-checkbox.green {
+        --paper-checkbox-checked-color: var(--paper-green-500);
+        --paper-checkbox-checked-ink-color: var(--paper-green-500);
+        --paper-checkbox-unchecked-color: var(--paper-green-900);
+        --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
       }
 
+      paper-checkbox.orange {
+        --paper-checkbox-checked-color: var(--paper-orange-500);
+        --paper-checkbox-checked-ink-color: var(--paper-orange-500);
+        --paper-checkbox-unchecked-color: var(--paper-orange-900);
+        --paper-checkbox-unchecked-ink-color: var(--paper-orange-900);
+      }
     </style>
   </head>
   <body>
-    <section>
+    <div class="horizontal center-justified layout">
       <div>
-        <paper-checkbox></paper-checkbox>
-        <paper-checkbox checked></paper-checkbox>
-        <paper-checkbox disabled></paper-checkbox>
-        <paper-checkbox disabled checked></paper-checkbox>
-
-        <br>
-
-        <paper-checkbox><h4>Notifications</h4></paper-checkbox>
-        <div class="note">Notify me about updates to apps or games that I've downloaded</div>
-
-        <br>
-
-        <paper-checkbox checked><h4>Auto-updates</h4></paper-checkbox>
-        <div class="note">Auto-update apps over wifi only</div>
-
-        <br>
-
-        <paper-checkbox><h4>Clear search history</h4></paper-checkbox>
-        <div class="note">Remove all the searches you have ever performed</div>
-
-        <br>
-
-        <paper-checkbox disabled checked><h4>Use as default browser</h4></paper-checkbox>
-
-        <br>
-
-        <paper-checkbox disabled><h4>Allow in incognito</h4></paper-checkbox>
-      </div>
-    </section>
-
-    <section>
-      <h3>Sound</h3>
-
-      <div class="center horizontal layout">
-        <div class="flex">Touch sounds</div>
-        <paper-checkbox class="blue" checked></paper-checkbox>
+        <h4>Enabled</h4>
+        <div class="horizontal-section">
+          <paper-checkbox>Oxygen</paper-checkbox>
+          <paper-checkbox>Carbon</paper-checkbox>
+          <paper-checkbox checked>Hydrogen</paper-checkbox>
+          <paper-checkbox checked>Nitrogen</paper-checkbox>
+          <paper-checkbox checked>Calcium</paper-checkbox>
+        </div>
       </div>
 
-      <div class="center horizontal layout">
-        <div class="flex">Screen lock sound</div>
-        <paper-checkbox class="blue"></paper-checkbox>
+      <div>
+        <h4>Disabled</h4>
+        <div class="horizontal-section">
+          <paper-checkbox disabled>Oxygen</paper-checkbox>
+          <paper-checkbox disabled>Carbon</paper-checkbox>
+          <paper-checkbox checked disabled>Hydrogen</paper-checkbox>
+          <paper-checkbox checked disabled>Nitrogen</paper-checkbox>
+          <paper-checkbox checked disabled>Calcium</paper-checkbox>
+        </div>
       </div>
 
-      <div class="center horizontal layout">
-        <div class="flex">Vibrate on touch</div>
-        <paper-checkbox class="blue"></paper-checkbox>
+      <div>
+        <h4>Color</h4>
+        <div class="horizontal-section">
+          <paper-checkbox class="blue" checked>Oxygen</paper-checkbox>
+          <paper-checkbox class="red" checked>Carbon</paper-checkbox>
+          <paper-checkbox class="orange" checked>Hydrogen</paper-checkbox>
+          <paper-checkbox class="green" checked>Nitrogen</paper-checkbox>
+          <paper-checkbox class="blue" checked>Calcium</paper-checkbox>
+        </div>
       </div>
-    </section>
+    </div>
   </body>
 </html>
