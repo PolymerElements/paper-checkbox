@@ -29,7 +29,7 @@ Example:
 Styling a checkbox:
 
 <style is="custom-style">
-  * {
+  paper-checkbox {
     /* Unhecked state colors. */
     --paper-checkbox-unchecked-color: #5a5a5a;
     --paper-checkbox-unchecked-ink-color: #5a5a5a;
@@ -42,10 +42,8 @@ Styling a checkbox:
     --paper-checkbox-label-color: #009987;
   }
 </style>
-
-@group Paper Elements
-@class paper-checkbox
 -->
+
 <style is="custom-style">
   :root {
     --paper-checkbox-unchecked-color: var(--primary-text-color);
@@ -103,10 +101,6 @@ Styling a checkbox:
 
         /**
          * Gets or sets the state, `true` is checked and `false` is unchecked.
-         *
-         * @attribute checked
-         * @type boolean
-         * @default false
          */
         checked: {
           type: Boolean,
@@ -119,10 +113,6 @@ Styling a checkbox:
         /**
          * If true, the button toggles the active state with each tap or press
          * of the spacebar.
-         *
-         * @attribute toggles
-         * @type boolean
-         * @default true
          */
         toggles: {
           type: Boolean,

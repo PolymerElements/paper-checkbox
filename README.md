@@ -7,15 +7,16 @@ ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
 instead.
 
 Example:
-
-    <paper-checkbox>label</paper-checkbox>
-
-    <paper-checkbox checked> label</paper-checkbox>
+```html
+<paper-checkbox>label</paper-checkbox>
+<paper-checkbox checked> label</paper-checkbox>
+```
 
 Styling a checkbox:
 
+```html
 <style is="custom-style">
-  * {
+    paper-checkbox {
     /* Unhecked state colors. */
     --paper-checkbox-unchecked-color: #5a5a5a;
     --paper-checkbox-unchecked-ink-color: #5a5a5a;
@@ -25,3 +26,4 @@ Styling a checkbox:
     --paper-checkbox-checked-ink-color: #009688;
   }
 </style>
+```
