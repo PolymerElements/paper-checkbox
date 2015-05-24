@@ -8,12 +8,15 @@ instead.
 
 Example:
 
-    <paper-checkbox>label</paper-checkbox>
+```html
+<paper-checkbox>label</paper-checkbox>
 
-    <paper-checkbox checked> label</paper-checkbox>
+<paper-checkbox checked> label</paper-checkbox>
+```
 
 Styling a checkbox:
 
+```html
 <style is="custom-style">
   * {
     /* Unhecked state colors. */
@@ -25,3 +28,4 @@ Styling a checkbox:
     --paper-checkbox-checked-ink-color: #009688;
   }
 </style>
+```
