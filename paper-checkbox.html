@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-behaviors/paper-radio-button-behavior.html">
 
 <!--
+
 `paper-checkbox` is a button that can be either checked or unchecked.  User
 can tap the checkbox to check or uncheck it.  Usually you use checkboxes
 to allow user to select multiple options from a set.  If you have a single
@@ -26,22 +27,18 @@ Example:
 
     <paper-checkbox checked> label</paper-checkbox>
 
-Styling a checkbox:
+### Styling
 
-<style is="custom-style">
-  paper-checkbox {
-    /* Unhecked state colors. */
-    --paper-checkbox-unchecked-color: #5a5a5a;
-    --paper-checkbox-unchecked-ink-color: #5a5a5a;
+The following custom properties and mixins are available for styling:
 
-    /* Checked state colors. */
-    --paper-checkbox-checked-color: #009688;
-    --paper-checkbox-checked-ink-color: #009688;
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-checkbox-unchecked-color` | Checkbox color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color`
+`--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
+`--paper-checkbox-label-color` | Label color | `--primary-text-color`
 
-    /* Label color. */
-    --paper-checkbox-label-color: #009987;
-  }
-</style>
 -->
 
 <style is="custom-style">
