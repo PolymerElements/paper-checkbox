@@ -124,6 +124,7 @@ Custom property | Description | Default
         } else {
           this.setAttribute('aria-label', this.$.checkboxLabel.textContent);
         }
+        this._isReady = true;
       },
 
       // button-behavior hook
@@ -131,7 +132,9 @@ Custom property | Description | Default
         if (this.disabled) {
           return;
         }
-        this.checked = this.active;
+        if (this._isReady) {
+          this.checked = this.active;
+        }
       },
 
       _checkedChanged: function(checked) {
