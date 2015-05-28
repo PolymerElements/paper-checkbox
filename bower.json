@@ -1,13 +1,12 @@
 {
   "name": "paper-checkbox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A material design checkbox",
   "authors": [
     "The Polymer Authors"
   ],
   "keywords": [
     "web-components",
-    "web-component",
     "polymer",
     "paper",
     "checkbox",
