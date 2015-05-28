@@ -13,7 +13,6 @@
     "checkbox",
     "control"
   ],
-  "main": "index.html",
   "private": true,
   "repository": {
     "type": "git",
