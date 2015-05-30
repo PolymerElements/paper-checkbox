@@ -57,6 +57,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   transition: background-color 140ms, border-color 140ms;
 }
 
+/* checkbox pressed animation */
+:host[pressed] #checkbox {
+  -webkit-animation: checkbox-expand 140ms ease-out forwards;
+  animation: checkbox-expand 140ms ease-out forwards;
+}
+
+@-webkit-keyframes checkbox-expand {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.875, 0.875); /* -2px*/
+  }
+}
+
+@keyframes checkbox-expand {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.875, 0.875);
+  }
+}
+
 /* checkbox checked animations */
 #checkbox.checked #checkmark {
   -webkit-animation: checkmark-expand 140ms ease-out forwards;
