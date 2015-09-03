@@ -42,6 +42,7 @@ Custom property | Description | Default
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
 `--paper-checkbox-label-color` | Label color | `--primary-text-color`
 `--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500`
+`--paper-checkbox-size` | Checkbox size (width/height) | `18px`
 
 @demo demo/index.html
 -->
@@ -65,8 +66,8 @@ Custom property | Description | Default
       #checkboxContainer {
         display: inline-block;
         position: relative;
-        width: 18px;
-        height: 18px;
+        width: var(--paper-checkbox-size, 18px);
+        height: var(--paper-checkbox-size, 18px);
         cursor: pointer;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
@@ -76,8 +77,8 @@ Custom property | Description | Default
 
       :host #ink {
         position: absolute;
-        top: -15px;
-        left: -15px;
+        top: calc((48px - var(--paper-checkbox-size, 18px)) / -2);
+        left: calc((48px - var(--paper-checkbox-size, 18px)) / -2);
         width: 48px;
         height: 48px;
         color: var(--paper-checkbox-unchecked-ink-color, --primary-text-color);
