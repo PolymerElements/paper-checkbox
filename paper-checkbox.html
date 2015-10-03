@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
-<link rel="import" href="../iron-checked-element-behavior/iron-checked-element-behavior.html">
+<link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
 Material design: [Checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
@@ -49,7 +49,7 @@ Custom property | Description | Default
 -->
 
 <dom-module id="paper-checkbox">
-  <template>
+  <template strip-whitespace>
     <style>
       :host {
         display: inline-block;
@@ -201,7 +201,6 @@ Custom property | Description | Default
     </style>
 
     <div id="checkboxContainer">
-      <paper-ripple id="ink" class="circle" center checked$="[[checked]]"></paper-ripple>
       <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
         <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
       </div>
@@ -216,7 +215,7 @@ Custom property | Description | Default
 
       behaviors: [
         Polymer.PaperInkyFocusBehavior,
-        Polymer.IronCheckedElementBehavior
+        Polymer.PaperCheckedElementBehavior
       ],
 
       hostAttributes: {
@@ -287,7 +286,14 @@ Custom property | Description | Default
 
       _computeCheckmarkClass: function(checked) {
         return checked ? '' : 'hidden';
+      },
+
+      // create ripple inside the checkboxContainer
+      _createRipple: function() {
+        this._rippleContainer = this.$.checkboxContainer;
+        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
       }
+
     });
   </script>
 </dom-module>
