@@ -28,7 +28,9 @@ Example:
 
     <paper-checkbox>label</paper-checkbox>
 
-    <paper-checkbox checked> label</paper-checkbox>
+    <paper-checkbox checked>label</paper-checkbox>
+
+    <paper-checkbox noink>label</paper-checkbox>
 
 ### Styling
 
@@ -89,6 +91,10 @@ Custom property | Description | Default
 
       :host #ink[checked] {
         color: var(--paper-checkbox-checked-ink-color, --default-primary-color);
+      }
+
+      :host([noink]) paper-ripple {
+        display: none;
       }
 
       :host #checkbox {
