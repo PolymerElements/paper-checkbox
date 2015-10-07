@@ -12,7 +12,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 <link rel="import" href="../paper-styles/color.html">
-<link rel="import" href="../paper-behaviors/paper-inky-focus-behavior.html">
 <link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
@@ -214,7 +213,6 @@ Custom property | Description | Default
       is: 'paper-checkbox',
 
       behaviors: [
-        Polymer.PaperInkyFocusBehavior,
         Polymer.PaperCheckedElementBehavior
       ],
 
@@ -243,8 +241,6 @@ Custom property | Description | Default
       },
 
       attached: function() {
-        this._isReady = true;
-
         // Don't stomp over a user-set aria-label.
         if (!this.getAttribute('aria-label')) {
           this.updateAriaLabel();
@@ -261,16 +257,6 @@ Custom property | Description | Default
        */
       updateAriaLabel: function() {
         this.setAttribute('aria-label', Polymer.dom(this).textContent.trim());
-      },
-
-      // button-behavior hook
-      _buttonStateChanged: function() {
-        if (this.disabled) {
-          return;
-        }
-        if (this._isReady) {
-          this.checked = this.active;
-        }
       },
 
       _computeCheckboxClass: function(checked, invalid) {
