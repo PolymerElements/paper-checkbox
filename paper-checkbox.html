@@ -175,6 +175,10 @@ Custom property | Description | Default
         pointer-events: none;
         color: var(--paper-checkbox-label-color, --primary-text-color);
       }
+      
+      :host[no-label] #checkboxLabel {
+        display: none;
+      }
 
       :host-context([dir="rtl"]) #checkboxLabel {
         padding-right: var(--paper-checkbox-label-spacing, 8px);
