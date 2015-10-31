@@ -9,6 +9,8 @@ Edit this file, and the bot will squash your changes :)
 
 -->
 
+[![Build Status](https://travis-ci.org/PolymerElements/paper-checkbox.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-checkbox)
+
 _[Demo and API Docs](https://elements.polymer-project.org/elements/paper-checkbox)_
 
 
