@@ -46,5 +46,6 @@ Custom property | Description | Default
 `--paper-checkbox-label-color` | Label color | `--primary-text-color`
 `--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px`
 `--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500`
+`--paper-checkbox-size` | Size of the checkbox | `18px`
 
 
