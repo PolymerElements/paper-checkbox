@@ -116,8 +116,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var giant = c2[1].getBoundingClientRect();
         var tiny = c2[2].getBoundingClientRect();
 
-        assert.isTrue(5 <= tiny.height < normal.height < giant.height <= 50);
-        assert.isTrue(5 <= tiny.width < normal.width < giant.width <= 50);
+        assert.isTrue(5 <= tiny.height);
+        assert.isTrue(tiny.height < normal.height);
+        assert.isTrue(normal.height < giant.height);
+        assert.isTrue(giant.height <= 50);
+        
+        assert.isTrue(5 <= tiny.width);
+        assert.isTrue(tiny.width < normal.width);
+        assert.isTrue(normal.width < giant.width);
+        assert.isTrue(giant.width <= 50);
       });
     });
 
