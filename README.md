@@ -7,6 +7,9 @@ paper-checkbox.html
 Edit those files, and our readme bot will duplicate them over here!
 Edit this file, and the bot will squash your changes :)
 
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
 -->
 
 [![Build Status](https://travis-ci.org/PolymerElements/paper-checkbox.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-checkbox)
@@ -15,7 +18,6 @@ _[Demo and API Docs](https://elements.polymer-project.org/elements/paper-checkbo
 
 
 ##&lt;paper-checkbox&gt;
-
 
 Material design: [Checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
 
@@ -27,25 +29,27 @@ instead.
 
 Example:
 
-    <paper-checkbox>label</paper-checkbox>
+```html
+<paper-checkbox>label</paper-checkbox>
 
-    <paper-checkbox checked> label</paper-checkbox>
+<paper-checkbox checked> label</paper-checkbox>
+```
 
 ### Styling
 
 The following custom properties and mixins are available for styling:
 
-Custom property | Description | Default
-----------------|-------------|----------
-`--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent`
-`--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color`
-`--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
-`--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color`
-`--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
-`--paper-checkbox-checkmark-color` | Checkmark color | `white`
-`--paper-checkbox-label-color` | Label color | `--primary-text-color`
-`--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px`
-`--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500`
-`--paper-checkbox-size` | Size of the checkbox | `18px`
+| Custom property | Description | Default |
+| --- | --- | --- |
+| `--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent` |
+| `--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color` |
+| `--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color` |
+| `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color` |
+| `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color` |
+| `--paper-checkbox-checkmark-color` | Checkmark color | `white` |
+| `--paper-checkbox-label-color` | Label color | `--primary-text-color` |
+| `--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px` |
+| `--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500` |
+| `--paper-checkbox-size` | Size of the checkbox | `18px` |
 
 
