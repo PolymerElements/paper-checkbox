@@ -44,8 +44,8 @@ The following custom properties and mixins are available for styling:
 | `--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent` |
 | `--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color` |
 | `--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color` |
-| `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color` |
-| `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color` |
+| `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color` |
+| `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color` |
 | `--paper-checkbox-checkmark-color` | Checkmark color | `white` |
 | `--paper-checkbox-label-color` | Label color | `--primary-text-color` |
 | `--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px` |
