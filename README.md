@@ -52,4 +52,7 @@ The following custom properties and mixins are available for styling:
 | `--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500` |
 | `--paper-checkbox-size` | Size of the checkbox | `18px` |
 
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
+
 
