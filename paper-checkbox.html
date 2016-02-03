@@ -156,6 +156,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         border-color: var(--paper-checkbox-checkmark-color, white);
         -webkit-transform-origin: 97% 86%;
         transform-origin: 97% 86%;
+        box-sizing: content-box; /* protect against page-level box-sizing */
       }
 
       :host-context([dir="rtl"]) #checkmark {
