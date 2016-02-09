@@ -18,15 +18,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../iron-test-helpers/mock-interactions.js"></script>
 
   <link rel="import" href="../paper-checkbox.html">
+
+  <style is="custom-style">
+    paper-checkbox.no-label-spacing {
+      --paper-checkbox-label-spacing: 0;
+    }
+    paper-checkbox.giant {
+      --paper-checkbox-size: 50px;
+    }
+    paper-checkbox.tiny {
+      --paper-checkbox-size: 5px;
+    }
+  </style>
 </head>
-<style is="custom-style">
-  paper-checkbox.giant {
-    --paper-checkbox-size: 50px;
-  }
-  paper-checkbox.tiny {
-    --paper-checkbox-size: 5px;
-  }
-</style>
 <body>
 
   <test-fixture id="NoLabel">
@@ -49,9 +53,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <test-fixture id="WithDifferentSizes">
     <template>
-      <paper-checkbox></paper-checkbox>
-      <paper-checkbox class="giant"></paper-checkbox>
-      <paper-checkbox class="tiny"></paper-checkbox>
+      <paper-checkbox class="no-label-spacing"></paper-checkbox>
+      <paper-checkbox class="no-label-spacing giant"></paper-checkbox>
+      <paper-checkbox class="no-label-spacing tiny"></paper-checkbox>
     </template>
   </test-fixture>
 
@@ -116,15 +120,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var giant = c2[1].getBoundingClientRect();
         var tiny = c2[2].getBoundingClientRect();
 
-        assert.isTrue(5 <= tiny.height);
+        assert.isTrue(5 === tiny.height);
         assert.isTrue(tiny.height < normal.height);
         assert.isTrue(normal.height < giant.height);
         assert.isTrue(giant.height <= 50);
         
-        assert.isTrue(5 <= tiny.width);
+        assert.isTrue(5 === tiny.width);
         assert.isTrue(tiny.width < normal.width);
         assert.isTrue(normal.width < giant.width);
-        assert.isTrue(giant.width <= 50);
+        assert.isTrue(giant.width === 50);
       });
     });
 
