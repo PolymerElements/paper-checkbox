@@ -23,11 +23,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     paper-checkbox.no-label-spacing {
       --paper-checkbox-label-spacing: 0;
     }
+
     paper-checkbox.giant {
       --paper-checkbox-size: 50px;
     }
+
     paper-checkbox.tiny {
       --paper-checkbox-size: 5px;
+    }
+
+    paper-checkbox.large-line-height {
+      line-height: 3;
+    }
+
+    paper-checkbox.small-line-height {
+      line-height: 0.25;
     }
   </style>
 </head>
@@ -56,6 +66,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-checkbox class="no-label-spacing"></paper-checkbox>
       <paper-checkbox class="no-label-spacing giant"></paper-checkbox>
       <paper-checkbox class="no-label-spacing tiny"></paper-checkbox>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="WithLineHeight">
+    <template>
+      <paper-checkbox class="large-line-height">Checkbox</paper-checkbox>
+      <paper-checkbox class="small-line-height">Checkbox</paper-checkbox>
     </template>
   </test-fixture>
 
@@ -129,6 +146,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.isTrue(tiny.width < normal.width);
         assert.isTrue(normal.width < giant.width);
         assert.isTrue(giant.width === 50);
+      });
+
+      suite('checkbox line-height', function() {
+        var large;
+        var small;
+
+        setup(function() {
+          var checkboxes = fixture('WithLineHeight');
+          large = checkboxes[0];
+          small = checkboxes[1];
+        });
+
+        test('checkboxes with >1 line-height have an equal height', function() {
+          var largeRect = large.getBoundingClientRect();
+          var largeStyle = getComputedStyle(large);
+
+          assert.isTrue(largeRect.height === 3 * parseFloat(largeStyle.fontSize));
+        });
+
+        test('checkbox with <1 line-height are at least 1em tall', function() {
+          var smallRect = small.getBoundingClientRect();
+          var smallStyle = getComputedStyle(small);
+
+          assert.isTrue(smallRect.height >= 1 * parseFloat(smallStyle.fontSize));
+        });
       });
     });
 
