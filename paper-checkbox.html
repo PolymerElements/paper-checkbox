@@ -10,7 +10,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
@@ -42,7 +41,7 @@ Custom property | Description | Default
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
 `--paper-checkbox-label-color` | Label color | `--primary-text-color`
 `--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px`
-`--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500`
+`--paper-checkbox-error-color` | Checkbox color when invalid | `--error-color`
 `--paper-checkbox-size` | Size of the checkbox | `18px`
 
 This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
@@ -207,7 +206,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       /* invalid state */
       #checkbox.invalid:not(.checked) {
-        border-color: var(--paper-checkbox-error-color, --google-red-500);
+        border-color: var(--paper-checkbox-error-color, --error-color);
       }
     </style>
 
