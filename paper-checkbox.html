@@ -172,7 +172,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         padding-left: var(--paper-checkbox-label-spacing, 8px);
         white-space: normal;
         line-height: normal;
-        pointer-events: none;
         color: var(--paper-checkbox-label-color, --primary-text-color);
       }
 
@@ -186,9 +185,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       /* disabled state */
-      :host([disabled]) {
-        pointer-events: none;
-      }
 
       :host([disabled]) #checkbox {
         opacity: 0.5;
