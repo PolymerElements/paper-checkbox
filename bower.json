@@ -12,7 +12,6 @@
     "checkbox",
     "control"
   ],
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/PolymerElements/paper-checkbox"
