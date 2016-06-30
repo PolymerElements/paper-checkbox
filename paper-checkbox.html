@@ -36,6 +36,7 @@ Custom property | Description | Default
 `--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent`
 `--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color`
 `--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-checked-background-color` | Checkbox background color when the input is checked | `--primary-color`
 `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color`
 `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
@@ -145,7 +146,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       #checkbox.checked {
-        background-color: var(--paper-checkbox-checked-color, --primary-color);
+        background-color: var(--paper-checkbox-checked-background-color, --primary-color);
         border-color: var(--paper-checkbox-checked-color, --primary-color);
       }
 
