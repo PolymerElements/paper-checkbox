@@ -95,9 +95,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         position: absolute;
 
         /* Center the ripple in the checkbox by negative offsetting it by
-         * (inkWidth - rippleWidth) / 2 */
-        top: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
-        left: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
+         * (inkWidth - rippleWidth) / 2 
+         * The small initial value helps avoid floating point rounding 
+         * from clipping the ink. */
+        top: calc(-.26px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
+        left: calc(-.26px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
         width: calc(2.66 * var(--calculated-paper-checkbox-size));
         height: calc(2.66 * var(--calculated-paper-checkbox-size));
         color: var(--paper-checkbox-unchecked-ink-color, --primary-text-color);
@@ -106,7 +108,9 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       :host-context([dir="rtl"]) #ink {
-        right: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
+        /* The small initial value helps avoid floating point rounding 
+         * from clipping the ink. */
+        right: calc(.26px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
         left: auto;
       }
 
