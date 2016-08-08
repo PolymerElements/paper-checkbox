@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style is="custom-style" include="demo-pages-shared-styles">
       paper-checkbox-light {
         display: block;
-        margin-right: 24px;
+        margin: 12px;
       }
 
       demo-snippet {
@@ -40,75 +40,110 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Checkboxes can be checked or unchecked, or disabled entirely</h3>
       <demo-snippet class="centered-demo">
         <template>
-          <paper-checkbox-light>Checkbox</paper-checkbox-light>
-          <paper-checkbox-light checked>Checkbox</paper-checkbox-light>
-          <paper-checkbox-light disabled>Disabled</paper-checkbox-light>
+          <paper-checkbox-light></paper-checkbox-light>
+          <paper-checkbox-light checked></paper-checkbox-light>
+          <paper-checkbox-light disabled></paper-checkbox-light>
         </template>
       </demo-snippet>
 
       <h3>Checkboxes can hide the ripple effect using the <i>noink</i> attribute</h3>
       <demo-snippet class="centered-demo">
         <template>
-          <paper-checkbox-light noink>Checkbox</paper-checkbox-light>
+          <paper-checkbox-light noink></paper-checkbox-light>
         </template>
       </demo-snippet>
 
-      <h3>Checkboxes can be styled using custom properties</h3>
+      <h3>
+        Use ARIA attributes (such as <code>aria-label</code>) to provide an
+        accessible description of the checkbox to the user.<br>
+        Checkboxes can be styled using custom properties.
+      </h3>
       <demo-snippet class="centered-demo small-text">
         <template>
           <style is="custom-style">
-            paper-checkbox-light.red {
-              --paper-checkbox-checked-color: var(--paper-red-500);
-              --paper-checkbox-checked-ink-color: var(--paper-red-500);
-              --paper-checkbox-unchecked-color: var(--paper-red-900);
-              --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
-              --paper-checkbox-label-color: var(--paper-red-500);
-              --paper-checkbox-vertical-align: top;
-            }
-
-            paper-checkbox-light.green {
-              align-self: center;
-              border: 1px solid var(--paper-green-200);
+            .checkbox-wrapper {
+              display: flex;
               padding: 8px 16px;
-
-              --paper-checkbox-checked-color: var(--paper-green-500);
-              --paper-checkbox-checked-ink-color: var(--paper-green-500);
-              --paper-checkbox-unchecked-color: var(--paper-green-900);
-              --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
-              --paper-checkbox-label-color: var(--paper-green-500);
-              --paper-checkbox-label-spacing: 0;
-              --paper-checkbox-margin: 8px 16px 8px 0;
-              --paper-checkbox-vertical-align: top;
             }
 
-            paper-checkbox-light.blue {
-              --paper-checkbox-checked-color: var(--paper-blue-500);
-              --paper-checkbox-checked-ink-color: var(--paper-blue-500);
-              --paper-checkbox-unchecked-color: var(--paper-blue-900);
-              --paper-checkbox-unchecked-ink-color: var(--paper-blue-900);
-              --paper-checkbox-label-color: var(--paper-blue-500);
-              --paper-checkbox-label-checked-color: var(--paper-blue-900);
+            .checkbox-wrapper.align-center {
+              align-items: center;
             }
 
-            paper-checkbox-light .subtitle {
+            .checkbox-wrapper paper-checkbox-light {
+              margin: 8px 16px 8px 0;
+            }
+
+            .checkbox-wrapper .subtitle {
               display: block;
               font-size: 0.8em;
               margin-top: 2px;
               max-width: 150px;
             }
+
+            .checkbox-wrapper.red {
+              color: var(--paper-red-500);
+            }
+
+            .checkbox-wrapper.red paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-red-500);
+              --paper-checkbox-checked-ink-color: var(--paper-red-500);
+              --paper-checkbox-unchecked-color: var(--paper-red-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
+              --paper-checkbox-vertical-align: top;
+            }
+
+            .checkbox-wrapper.green {
+              border: 1px solid var(--paper-green-200);
+              color: var(--paper-green-500);
+            }
+
+            .checkbox-wrapper.green paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-green-500);
+              --paper-checkbox-checked-ink-color: var(--paper-green-500);
+              --paper-checkbox-unchecked-color: var(--paper-green-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
+              --paper-checkbox-vertical-align: top;
+            }
+
+            .checkbox-wrapper.blue {
+              color: var(--paper-blue-500);
+            }
+
+            .checkbox-wrapper.blue paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-blue-500);
+              --paper-checkbox-checked-ink-color: var(--paper-blue-500);
+              --paper-checkbox-unchecked-color: var(--paper-blue-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-blue-900);
+            }
           </style>
 
-          <paper-checkbox-light class="red">
-            Checkbox
-            <span class="subtitle">With a subtitle</span>
-          </paper-checkbox-light>
-          <paper-checkbox-light checked class="green">
-            Checkbox
-            <span class="subtitle">
-              With a longer subtitle that wraps to another line
-            </span>
-          </paper-checkbox-light>
-          <paper-checkbox-light class="blue">Checkbox</paper-checkbox-light>
+          <div class="checkbox-wrapper align-center red">
+            <paper-checkbox-light aria-label="A red checkbox"></paper-checkbox-light>
+            <div>
+              A red checkbox
+            </div>
+          </div>
+          <div class="checkbox-wrapper green">
+            <paper-checkbox-light checked aria-labelledby="label-green"></paper-checkbox-light>
+            <div>
+              <span id="label-green">A green checkbox</span>
+              <span class="subtitle">
+                with a subtitle that wraps to a few lines because that's what
+                happens when it's so long
+              </span>
+            </div>
+          </div>
+          <div class="checkbox-wrapper align-center blue">
+            <paper-checkbox-light aria-labelledby="label-blue"></paper-checkbox-light>
+            <div>
+              <span id="label-blue">A blue checkbox</span>
+              <span class="subtitle">
+                with a subtitle that's also really long but the checkbox is
+                center aligned
+              </span>
+            </div>
+          </div>
         </template>
       </demo-snippet>
     </div>

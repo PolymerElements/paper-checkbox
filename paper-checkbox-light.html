@@ -10,22 +10,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
 
 <!--
 Material design: [Checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
 
-`paper-checkbox` is a button that can be either checked or unchecked.  User
-can tap the checkbox to check or uncheck it.  Usually you use checkboxes
-to allow user to select multiple options from a set.  If you have a single
+`paper-checkbox-light` is a button that can be either checked or unchecked. The
+user can tap the checkbox to check or uncheck it. Usually you use checkboxes
+to allow user to select multiple options from a set. If you have a single
 ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
 instead.
 
+`paper-checkbox-light` differs from `paper-checkbox` in that it prioritizes
+rendering speed over features and ease of use. This means the majority of the
+behaviors included in `paper-checkbox` are not included in
+`paper-checkbox-light`. For example, `paper-checkbox-light` does not
+support use within `iron-form` (i.e. it does not include
+IronFormElementBehavior) and it does not support validation (i.e. it does not
+include IronValidatableBehavior). More importantly, the checkbox no longer
+supports children, which were previously used as a label. *Use ARIA attributes
+(such as `aria-label`) to provide users an accessible description of the
+checkbox.*
+
 Example:
 
-    <paper-checkbox>label</paper-checkbox>
-
-    <paper-checkbox checked> label</paper-checkbox>
+    <paper-checkbox-light aria-label="A checkbox."></paper-checkbox-light>
 
 ### Styling
 
@@ -39,16 +48,8 @@ Custom property | Description | Default
 `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color`
 `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
-`--paper-checkbox-label-color` | Label color | `--primary-text-color`
-`--paper-checkbox-label-checked-color` | Label color when the input is checked | `--paper-checkbox-label-color`
-`--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px`
-`--paper-checkbox-label` | Mixin applied to the label | `{}`
-`--paper-checkbox-label-checked` | Mixin applied to the label when the input is checked | `{}`
-`--paper-checkbox-error-color` | Checkbox color when invalid | `--error-color`
 `--paper-checkbox-size` | Size of the checkbox | `18px`
 `--paper-checkbox-ink-size` | Size of the ripple | `48px`
-`--paper-checkbox-margin` | Margin around the checkbox container | `initial`
-`--paper-checkbox-vertical-align` | Vertical alignment of the checkbox container | `middle`
 
 This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
 In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
@@ -56,18 +57,20 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 @demo demo/index.html
 -->
 
-<dom-module id="paper-checkbox">
+<dom-module id="paper-checkbox-light">
   <template strip-whitespace>
     <style>
       :host {
         display: inline-block;
-        white-space: nowrap;
         cursor: pointer;
         --calculated-paper-checkbox-size: var(--paper-checkbox-size, 18px);
         /* -1px is a sentinel for the default and is replaced in `attached`. */
         --calculated-paper-checkbox-ink-size: var(--paper-checkbox-ink-size, -1px);
-        @apply(--paper-font-common-base);
-        line-height: 0;
+        position: relative;
+        width: var(--calculated-paper-checkbox-size);
+        height: var(--calculated-paper-checkbox-size);
+        min-width: var(--calculated-paper-checkbox-size);
+        background-color: var(--paper-checkbox-unchecked-background-color, transparent);
         -webkit-tap-highlight-color: transparent;
       }
 
@@ -79,22 +82,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         outline: none;
       }
 
-      .hidden {
-        display: none;
-      }
-
-      #checkboxContainer {
-        display: inline-block;
-        position: relative;
-        width: var(--calculated-paper-checkbox-size);
-        height: var(--calculated-paper-checkbox-size);
-        min-width: var(--calculated-paper-checkbox-size);
-        margin: var(--paper-checkbox-margin, initial);
-        vertical-align: var(--paper-checkbox-vertical-align, middle);
-        background-color: var(--paper-checkbox-unchecked-background-color, transparent);
-      }
-
-      #ink {
+      paper-ripple {
         position: absolute;
 
         /* Center the ripple in the checkbox by negative offsetting it by
@@ -108,12 +96,12 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         pointer-events: none;
       }
 
-      :host-context([dir="rtl"]) #ink {
+      :host-context([dir="rtl"]) paper-ripple {
         right: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
         left: auto;
       }
 
-      #ink[checked] {
+      :host([checked]) paper-ripple {
         color: var(--paper-checkbox-checked-ink-color, var(--primary-color));
       }
 
@@ -130,7 +118,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       /* checkbox checked animations */
-      #checkbox.checked #checkmark {
+      :host([checked]) #checkbox #checkmark {
         -webkit-animation: checkmark-expand 140ms ease-out forwards;
         animation: checkmark-expand 140ms ease-out forwards;
       }
@@ -153,12 +141,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       }
 
-      #checkbox.checked {
+      :host([checked]) #checkbox {
         background-color: var(--paper-checkbox-checked-color, var(--primary-color));
         border-color: var(--paper-checkbox-checked-color, var(--primary-color));
       }
 
       #checkmark {
+        display: none;
         position: absolute;
         width: 36%;
         height: 70%;
@@ -173,35 +162,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         box-sizing: content-box; /* protect against page-level box-sizing */
       }
 
+      :host([checked]) #checkmark {
+        display: block;
+      }
+
       :host-context([dir="rtl"]) #checkmark {
         -webkit-transform-origin: 50% 14%;
         transform-origin: 50% 14%;
-      }
-
-      /* label */
-      #checkboxLabel {
-        position: relative;
-        display: inline-block;
-        vertical-align: middle;
-        padding-left: var(--paper-checkbox-label-spacing, 8px);
-        white-space: normal;
-        line-height: normal;
-        color: var(--paper-checkbox-label-color, var(--primary-text-color));
-        @apply(--paper-checkbox-label);
-      }
-
-      :host([checked]) #checkboxLabel {
-        color: var(--paper-checkbox-label-checked-color, var(--paper-checkbox-label-color, var(--primary-text-color)));
-        @apply(--paper-checkbox-label-checked);
-      }
-
-      :host-context([dir="rtl"]) #checkboxLabel {
-        padding-right: var(--paper-checkbox-label-spacing, 8px);
-        padding-left: 0;
-      }
-
-      #checkboxLabel[hidden] {
-        display: none;
       }
 
       /* disabled state */
@@ -215,59 +182,83 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         background-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
         opacity: 0.5;
       }
-
-      :host([disabled]) #checkboxLabel  {
-        opacity: 0.65;
-      }
-
-      /* invalid state */
-      #checkbox.invalid:not(.checked) {
-        border-color: var(--paper-checkbox-error-color, var(--error-color));
-      }
     </style>
 
-    <div id="checkboxContainer">
-      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
-        <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
-      </div>
+    <div id="checkbox">
+      <div id="checkmark"></div>
     </div>
-
-    <div id="checkboxLabel"><content></content></div>
   </template>
 
   <script>
     Polymer({
-      is: 'paper-checkbox',
-
-      behaviors: [
-        Polymer.PaperCheckedElementBehavior
-      ],
+      is: 'paper-checkbox-light',
 
       hostAttributes: {
         role: 'checkbox',
-        'aria-checked': false,
         tabindex: 0
       },
 
-      properties: {
-        /**
-         * Fired when the checked state changes due to user interaction.
-         *
-         * @event change
-         */
+      /**
+       * Focus events occuring less than this value (in milliseconds) after a
+       * 'down' event are considered to be the result of a pointer.
+       */
+      __POINTER_FOCUS_WINDOW: 30,
 
-        /**
-         * Fired when the checked state changes.
-         *
-         * @event iron-change
-         */
-        ariaActiveAttribute: {
-          type: String,
-          value: 'aria-checked'
-        }
+      properties: {
+        checked: {
+          type: Boolean,
+          notify: true,
+          reflectToAttribute: true,
+          observer: '_checkedChanged'
+        },
+
+        disabled: {
+          type: Boolean,
+          reflectToAttribute: true,
+          observer: '_disabledChanged'
+        },
+
+        noink: {
+          type: Boolean,
+          observer: '_noinkChanged'
+        },
+      },
+
+      listeners: {
+        'tap': '_onTap',
+        'keypress': '_onKeypress',
+        'down': '_onDown',
+        'up': '_onUp',
+        'focus': '_onFocus',
+        'blur': '_onBlur'
+      },
+
+      created: function() {
+        this._lastDown = 0;
       },
 
       attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          this.setAttribute('aria-checked', !!this.checked);
+          this.setAttribute('aria-disabled', !!this.disabled);
+        });
+      },
+
+      _checkedChanged: function(checked) {
+        this.setAttribute('aria-checked', this.checked);
+      },
+
+      _disabledChanged: function(disabled) {
+        this.setAttribute('aria-disabled', this.disabled);
+      },
+
+      _noinkChanged: function(noink) {
+        if (this._ripple) {
+          this._ripple.noink = noink;
+        }
+      },
+
+      _updateInkSize: function() {
         var inkSize = this.getComputedStyleValue('--calculated-paper-checkbox-ink-size');
         // If unset, compute and set the default `--paper-checkbox-ink-size`.
         if (inkSize === '-1px') {
@@ -285,27 +276,60 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       },
 
-      _computeCheckboxClass: function(checked, invalid) {
-        var className = '';
-        if (checked) {
-          className += 'checked ';
+      _onTap: function() {
+        if (!this.disabled) {
+          this.checked = !this.checked;
         }
-        if (invalid) {
-          className += 'invalid';
-        }
-        return className;
       },
 
-      _computeCheckmarkClass: function(checked) {
-        return checked ? '' : 'hidden';
+      _onKeypress: function(event) {
+        var isSpace = event.key === ' ' || event.code === 'Space' || event.keyCode === 32;
+        var isEnter = event.key === 'Enter' || event.code === 'Enter' || event.keyCode === 13;
+        if (isSpace || isEnter) {
+          event.preventDefault();
+
+          if (!this.disabled) {
+            this.checked = !this.checked;
+          }
+        }
       },
 
-      // create ripple inside the checkboxContainer
-      _createRipple: function() {
-        this._rippleContainer = this.$.checkboxContainer;
-        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
-      }
+      _onDown: function() {
+        this._lastDown = Date.now();
+        this._updateInkSize();
+      },
 
+      _onUp: function() {
+        this._getRipple().holdDown = false;
+      },
+
+      _onFocus: function() {
+        this._updateInkSize();
+        var ripple = this._getRipple();
+        if ((Date.now() - this._lastDown) > this.__POINTER_FOCUS_WINDOW) {
+          ripple.holdDown = true;
+          this._lastDown = 0;
+          ripple.downAction();
+        }
+      },
+
+      _onBlur: function() {
+        var ripple = this._getRipple()
+        ripple.holdDown = false;
+        ripple.upAction();
+      },
+
+      _getRipple: function() {
+        if (!this._ripple) {
+          var ripple = document.createElement('paper-ripple');
+          ripple.center = true;
+          ripple.classList.add('circle');
+          ripple.noink = this.noink;
+          Polymer.dom(this.root).appendChild(ripple);
+          this._ripple = ripple;
+        }
+        return this._ripple;
+      },
     });
   </script>
 </dom-module>
