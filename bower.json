@@ -36,5 +36,8 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0"
   },
-  "main": "paper-checkbox.html"
+  "main": [
+    "paper-checkbox.html",
+    "paper-checkbox-light.html"
+  ]
 }
