@@ -208,21 +208,22 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         },
       },
 
-      listeners: {
-        'tap': '_onTap',
-        'keypress': '_onKeypress',
-        'down': '_onDown',
-        'up': '_onUp',
-        'focus': '_onFocus',
-        'blur': '_onBlur'
-      },
-
       created: function() {
         this._lastDown = 0;
+        this._listenersAttached = false;
       },
 
       attached: function() {
         Polymer.RenderStatus.afterNextRender(this, function() {
+          if (!this._listenersAttached) {
+            this.listen(this, 'tap', '_onTap');
+            this.listen(this, 'keypress', '_onKeypress');
+            this.listen(this, 'down', '_onDown');
+            this.listen(this, 'up', '_onUp');
+            this.listen(this, 'focus', '_onFocus');
+            this.listen(this, 'blur', '_onBlur');
+            this._listenersAttached = true;
+          }
           this.setAttribute('aria-checked', !!this.checked);
           this.setAttribute('aria-disabled', !!this.disabled);
         });
@@ -281,8 +282,15 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       _onDown: function() {
-        this._lastDown = Date.now();
         this._updateInkSize();
+        var ripple = this._getRipple();
+        // If there was no earlier 'down' event, then the call to `_getRipple`
+        // above will have created it but the newly created ripple will not have
+        // received the event.
+        if (this._lastDown === 0 && !this.noink) {
+          ripple.downAction();
+        }
+        this._lastDown = Date.now();
       },
 
       _onUp: function() {

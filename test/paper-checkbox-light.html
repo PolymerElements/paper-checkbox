@@ -85,8 +85,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     suite('defaults', function() {
       var c1;
 
-      setup(function() {
+      setup(function(done) {
         c1 = fixture('Basic');
+        Polymer.RenderStatus.afterNextRender(c1, done);
       });
 
       test('check checkbox via click', function(done) {
@@ -139,18 +140,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('ink size', function() {
         var checkboxes;
 
-        setup(function() {
+        setup(function(done) {
           checkboxes = fixture('WithDifferentSizes2');
-          checkboxes.forEach(function(checkbox) {
-            // Trigger ink size calculation.
-            MockInteractions.tap(checkbox);
+          Polymer.RenderStatus.afterNextRender(checkboxes[0], function() {
+            checkboxes.forEach(function(checkbox) {
+              // Trigger ink size calculation.
+              MockInteractions.tap(checkbox);
+            });
+            done();
           });
         });
 
-        test('`--paper-checkbox-ink-size` sets the ink size', function() {
+        test('`--paper-checkbox-ink-size` sets the ink size', function(done) {
           var checkbox = fixture('CustomInkSize');
-          assert.equal(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'), '25px');
-          assert.equal(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'), '30px');
+          Polymer.RenderStatus.afterNextRender(checkbox, function() {
+            MockInteractions.tap(checkbox);
+            assert.equal(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'), '25px');
+            assert.equal(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'), '30px');
+            done();
+          });
         });
 
         test('ink sizes are near (8/3 * checkbox size) by default', function() {
