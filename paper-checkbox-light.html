@@ -218,6 +218,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
           if (!this._listenersAttached) {
             this.listen(this, 'tap', '_onTap');
             this.listen(this, 'keypress', '_onKeypress');
+            this.listen(this, 'keyup', '_onKeyup');
             this.listen(this, 'down', '_onDown');
             this.listen(this, 'up', '_onUp');
             this.listen(this, 'focus', '_onFocus');
@@ -269,12 +270,21 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       },
 
-      _onKeypress: function(event) {
+      _isSpaceOrEnterKeyEvent(event) {
         var isSpace = event.key === ' ' || event.code === 'Space' || event.keyCode === 32;
         var isEnter = event.key === 'Enter' || event.code === 'Enter' || event.keyCode === 13;
-        if (isSpace || isEnter) {
-          event.preventDefault();
+        return isSpace || isEnter;
+      },
 
+      _onKeypress: function(event) {
+        if (this._isSpaceOrEnterKeyEvent(event)) {
+          event.preventDefault();
+          this._getRipple().holdDown = true;
+        }
+      },
+
+      _onKeyup: function(event) {
+        if (this._isSpaceOrEnterKeyEvent(event)) {
           if (!this.disabled) {
             this.checked = !this.checked;
           }
