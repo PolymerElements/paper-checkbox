@@ -270,7 +270,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       },
 
-      _isSpaceOrEnterKeyEvent(event) {
+      _isSpaceOrEnterKeyEvent: function(event) {
         var isSpace = event.key === ' ' || event.code === 'Space' || event.keyCode === 32;
         var isEnter = event.key === 'Enter' || event.code === 'Enter' || event.keyCode === 13;
         return isSpace || isEnter;
