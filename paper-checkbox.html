@@ -227,12 +227,12 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     </style>
 
     <div id="checkboxContainer">
-      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
-        <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
+      <div id="checkbox">
+        <div id="checkmark"></div>
       </div>
     </div>
 
-    <div id="checkboxLabel"><content></content></div>
+    <div id="checkboxLabel"><content></content><slot></slot></div>
   </template>
 
   <script>
@@ -267,6 +267,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       },
 
+      observers: [
+        '_computeCheckboxClass(checked, invalid)',
+        '_computeCheckmarkClass(checked)'
+      ],
+
       attached: function() {
         var inkSize = this.getComputedStyleValue('--calculated-paper-checkbox-ink-size').trim();
         // If unset, compute and set the default `--paper-checkbox-ink-size`.
@@ -280,24 +285,35 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
             defaultInkSize++;
           }
 
-          this.customStyle['--paper-checkbox-ink-size'] = defaultInkSize + 'px';
-          this.updateStyles();
+          this.updateStyles({
+            '--paper-checkbox-ink-size': defaultInkSize + 'px',
+          });
         }
       },
 
       _computeCheckboxClass: function(checked, invalid) {
-        var className = '';
+        var checkboxClassList = this.$.checkbox.classList;
+
         if (checked) {
-          className += 'checked ';
+          checkboxClassList.add('checked');
+        } else {
+          checkboxClassList.remove('checked');
         }
+
         if (invalid) {
-          className += 'invalid';
+          checkboxClassList.add('invalid');
+        } else {
+          checkboxClassList.remove('invalid');
         }
-        return className;
       },
 
       _computeCheckmarkClass: function(checked) {
-        return checked ? '' : 'hidden';
+        var checkmarkClassList = this.$.checkmark.classList;
+        if (checked) {
+          checkmarkClassList.remove('hidden');
+        } else {
+          checkmarkClassList.add('hidden');
+        }
       },
 
       // create ripple inside the checkboxContainer
