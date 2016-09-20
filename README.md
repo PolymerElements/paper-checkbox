@@ -32,7 +32,7 @@ Example:
 <custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../paper-checxbox.html">
+    <link rel="import" href="paper-checxbox.html">
     <next-code-block></next-code-block>
     <style is="custom-style">
       paper-checkbox {
