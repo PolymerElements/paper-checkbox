@@ -27,17 +27,25 @@ ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
 instead.
 
 Example:
-<!--
+<!---
 ```
 <custom-element-demo>
   <template>
-    <link rel=”import” href="paper-checkbox/paper-checxbox.html”>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../paper-checxbox.html">
     <next-code-block></next-code-block>
+    <style is="custom-style">
+      paper-checkbox {
+        display: block;
+        margin-right: 24px;
+      }
+    </style>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<paper-checkbox>label</paper-checkbox>
-<paper-checkbox checked> label</paper-checkbox>
+<paper-checkbox>Unchecked</paper-checkbox>
+<paper-checkbox checked>Checked</paper-checkbox>
+<paper-checkbox disabled>Disabled</paper-checkbox>
 ```
