@@ -29,7 +29,7 @@ instead.
 Example:
 <!---
 ```
-<custom-element-demo>
+<custom-element-demo height="150">
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="paper-checkbox.html">
@@ -37,7 +37,7 @@ Example:
     <style is="custom-style">
       paper-checkbox {
         display: block;
-        margin-right: 24px;
+        margin: 24px;
       }
     </style>
   </template>
