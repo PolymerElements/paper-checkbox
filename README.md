@@ -29,14 +29,14 @@ instead.
 Example:
 <!---
 ```
-<custom-element-demo height="150">
+<custom-element-demo>
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="paper-checkbox.html">
     <next-code-block></next-code-block>
     <style is="custom-style">
       paper-checkbox {
-        display: block;
+        font-family: 'Roboto', sans-serif;
         margin: 24px;
       }
     </style>
