@@ -18,10 +18,8 @@ _[Demo and API docs](https://elements.polymer-project.org/elements/paper-checkbo
 
 ##&lt;paper-checkbox&gt;
 
-A material design [checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
-
-`paper-checkbox` is a button that can be either checked or unchecked.  User
-can tap the checkbox to check or uncheck it.  Usually you use checkboxes
+`paper-checkbox` is a [material design checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox). 
+User can tap the checkbox to check or uncheck it.  Usually you use checkboxes
 to allow user to select multiple options from a set.  If you have a single
 ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
 instead.
@@ -39,13 +37,17 @@ Example:
         font-family: 'Roboto', sans-serif;
         margin: 24px;
       }
+        
+      paper-checkbox:first-child {
+        --primary-color: #ff5722;
+      }
     </style>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<paper-checkbox>Unchecked</paper-checkbox>
 <paper-checkbox checked>Checked</paper-checkbox>
+<paper-checkbox>Unchecked</paper-checkbox>
 <paper-checkbox disabled>Disabled</paper-checkbox>
 ```
