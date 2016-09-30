@@ -19,8 +19,8 @@ _[Demo and API docs](https://elements.polymer-project.org/elements/paper-checkbo
 ##&lt;paper-checkbox&gt;
 
 `paper-checkbox` is a [material design checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox). 
-User can tap the checkbox to check or uncheck it.  Usually you use checkboxes
-to allow user to select multiple options from a set.  If you have a single
+User can tap the checkbox to check or uncheck it. Usually you use checkboxes
+to allow user to select multiple options from a set. If you have a single
 ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
 instead.
 
