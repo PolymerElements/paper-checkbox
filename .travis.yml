@@ -17,7 +17,6 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
-  sauce_connect: true
 script:
 - xvfb-run wct
 - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct -s 'default'; fi
