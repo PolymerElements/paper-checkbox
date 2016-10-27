@@ -1,0 +1,151 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+  <head>
+    <title>paper-checkbox-light demo</title>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../paper-checkbox-light.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+      paper-checkbox-light {
+        display: block;
+        margin: 12px;
+      }
+
+      demo-snippet {
+        margin-bottom: 40px;
+      }
+      .vertical-section-container {
+        max-width: 550px;
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <div class="vertical-section-container centered">
+      <h3>Checkboxes can be checked or unchecked, or disabled entirely</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <paper-checkbox-light></paper-checkbox-light>
+          <paper-checkbox-light checked></paper-checkbox-light>
+          <paper-checkbox-light disabled></paper-checkbox-light>
+        </template>
+      </demo-snippet>
+
+      <h3>Checkboxes can hide the ripple effect using the <i>noink</i> attribute</h3>
+      <demo-snippet class="centered-demo">
+        <template>
+          <paper-checkbox-light noink></paper-checkbox-light>
+        </template>
+      </demo-snippet>
+
+      <h3>
+        Use ARIA attributes (such as <code>aria-label</code>) to provide an
+        accessible description of the checkbox to the user.<br>
+        Checkboxes can be styled using custom properties.
+      </h3>
+      <demo-snippet class="centered-demo small-text">
+        <template>
+          <style is="custom-style">
+            .checkbox-wrapper {
+              display: flex;
+              padding: 8px 16px;
+            }
+
+            .checkbox-wrapper.align-center {
+              align-items: center;
+            }
+
+            .checkbox-wrapper paper-checkbox-light {
+              margin: 8px 16px 8px 0;
+            }
+
+            .checkbox-wrapper .subtitle {
+              display: block;
+              font-size: 0.8em;
+              margin-top: 2px;
+              max-width: 150px;
+            }
+
+            .checkbox-wrapper.red {
+              color: var(--paper-red-500);
+            }
+
+            .checkbox-wrapper.red paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-red-500);
+              --paper-checkbox-checked-ink-color: var(--paper-red-500);
+              --paper-checkbox-unchecked-color: var(--paper-red-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
+              --paper-checkbox-vertical-align: top;
+            }
+
+            .checkbox-wrapper.green {
+              border: 1px solid var(--paper-green-200);
+              color: var(--paper-green-500);
+            }
+
+            .checkbox-wrapper.green paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-green-500);
+              --paper-checkbox-checked-ink-color: var(--paper-green-500);
+              --paper-checkbox-unchecked-color: var(--paper-green-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
+              --paper-checkbox-vertical-align: top;
+            }
+
+            .checkbox-wrapper.blue {
+              color: var(--paper-blue-500);
+            }
+
+            .checkbox-wrapper.blue paper-checkbox-light {
+              --paper-checkbox-checked-color: var(--paper-blue-500);
+              --paper-checkbox-checked-ink-color: var(--paper-blue-500);
+              --paper-checkbox-unchecked-color: var(--paper-blue-900);
+              --paper-checkbox-unchecked-ink-color: var(--paper-blue-900);
+            }
+          </style>
+
+          <div class="checkbox-wrapper align-center red">
+            <paper-checkbox-light aria-label="A red checkbox"></paper-checkbox-light>
+            <div>
+              A red checkbox
+            </div>
+          </div>
+          <div class="checkbox-wrapper green">
+            <paper-checkbox-light checked aria-labelledby="label-green"></paper-checkbox-light>
+            <div>
+              <span id="label-green">A green checkbox</span>
+              <span class="subtitle">
+                with a subtitle that wraps to a few lines because that's what
+                happens when it's so long
+              </span>
+            </div>
+          </div>
+          <div class="checkbox-wrapper align-center blue">
+            <paper-checkbox-light aria-labelledby="label-blue"></paper-checkbox-light>
+            <div>
+              <span id="label-blue">A blue checkbox</span>
+              <span class="subtitle">
+                with a subtitle that's also really long but the checkbox is
+                center aligned
+              </span>
+            </div>
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+  </body>
+</html>

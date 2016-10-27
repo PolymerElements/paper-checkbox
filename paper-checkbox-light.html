@@ -1,0 +1,339 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-styles/default-theme.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+
+<!--
+Material design: [Checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
+
+`paper-checkbox-light` is a button that can be either checked or unchecked. The
+user can tap the checkbox to check or uncheck it. Usually you use checkboxes
+to allow user to select multiple options from a set. If you have a single
+ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
+instead.
+
+`paper-checkbox-light` differs from `paper-checkbox` in that it prioritizes
+rendering speed over features and ease of use. This means the majority of the
+behaviors included in `paper-checkbox` are not included in
+`paper-checkbox-light`. For example, `paper-checkbox-light` does not
+support use within `iron-form` (i.e. it does not include
+IronFormElementBehavior) and it does not support validation (i.e. it does not
+include IronValidatableBehavior). More importantly, the checkbox no longer
+supports children, which were previously used as a label. *Use ARIA attributes
+(such as `aria-label`) to provide users an accessible description of the
+checkbox.*
+
+Example:
+
+    <paper-checkbox-light aria-label="A checkbox."></paper-checkbox-light>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent`
+`--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color`
+`--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
+`--paper-checkbox-checkmark-color` | Checkmark color | `white`
+`--paper-checkbox-size` | Size of the checkbox | `18px`
+`--paper-checkbox-ink-size` | Size of the ripple | `48px`
+
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
+
+@demo demo/index.html
+-->
+
+<dom-module id="paper-checkbox-light">
+  <template strip-whitespace>
+    <style>
+      :host {
+        display: inline-block;
+        cursor: pointer;
+        --calculated-paper-checkbox-size: var(--paper-checkbox-size, 18px);
+        /* -1px is a sentinel for the default and is replaced in `attached`. */
+        --calculated-paper-checkbox-ink-size: var(--paper-checkbox-ink-size, -1px);
+        position: relative;
+        width: var(--calculated-paper-checkbox-size);
+        height: var(--calculated-paper-checkbox-size);
+        min-width: var(--calculated-paper-checkbox-size);
+        background-color: var(--paper-checkbox-unchecked-background-color, transparent);
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :host([hidden]) {
+        display: none !important;
+      }
+
+      :host(:focus) {
+        outline: none;
+      }
+
+      paper-ripple {
+        position: absolute;
+
+        /* Center the ripple in the checkbox by negative offsetting it by
+         * (inkWidth - rippleWidth) / 2 */
+        top: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
+        left: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
+        width: var(--calculated-paper-checkbox-ink-size);
+        height: var(--calculated-paper-checkbox-ink-size);
+        color: var(--paper-checkbox-unchecked-ink-color, var(--primary-text-color));
+        opacity: 0.6;
+        pointer-events: none;
+      }
+
+      :host-context([dir="rtl"]) paper-ripple {
+        right: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
+        left: auto;
+      }
+
+      :host([checked]) paper-ripple {
+        color: var(--paper-checkbox-checked-ink-color, var(--primary-color));
+      }
+
+      #checkbox {
+        position: relative;
+        box-sizing: border-box;
+        height: 100%;
+        border: solid 2px;
+        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        border-radius: 2px;
+        pointer-events: none;
+        -webkit-transition: background-color 140ms, border-color 140ms;
+        transition: background-color 140ms, border-color 140ms;
+      }
+
+      :host([checked]) #checkbox {
+        background-color: var(--paper-checkbox-checked-color, var(--primary-color));
+        border-color: var(--paper-checkbox-checked-color, var(--primary-color));
+      }
+
+      #checkmark {
+        opacity: 0;
+        position: absolute;
+        width: 36%;
+        height: 70%;
+        border-style: solid;
+        border-top: none;
+        border-left: none;
+        border-right-width: calc(2/15 * var(--calculated-paper-checkbox-size));
+        border-bottom-width: calc(2/15 * var(--calculated-paper-checkbox-size));
+        border-color: var(--paper-checkbox-checkmark-color, white);
+        -webkit-transform-origin: 97% 86%;
+        transform-origin: 97% 86%;
+        box-sizing: content-box; /* protect against page-level box-sizing */
+
+        -webkit-transform: scale(0) rotate(45deg);
+        transform: scale(0) rotate(45deg);
+      }
+
+      /* checkbox checked animations */
+      :host([checked]) #checkmark {
+        opacity: 1;
+        -webkit-transition: -webkit-transform 140ms ease-out, transform 140ms ease-out, opacity 140ms ease-out;
+        transition: -webkit-transform 140ms ease-out, transform 140ms ease-out, opacity 140ms ease-out;
+        -webkit-transform: scale(1) rotate(45deg);
+        transform: scale(1) rotate(45deg);
+      }
+
+      :host-context([dir="rtl"]) #checkmark {
+        -webkit-transform-origin: 50% 14%;
+        transform-origin: 50% 14%;
+      }
+
+      /* disabled state */
+
+      :host([disabled]) #checkbox {
+        opacity: 0.5;
+        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+      }
+
+      :host([disabled][checked]) #checkbox {
+        background-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        opacity: 0.5;
+      }
+    </style>
+
+    <div id="checkbox">
+      <div id="checkmark"></div>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'paper-checkbox-light',
+
+      hostAttributes: {
+        role: 'checkbox',
+        tabindex: 0
+      },
+
+      /**
+       * Focus events occuring less than this value (in milliseconds) after a
+       * 'down' event are considered to be the result of a pointer.
+       */
+      __POINTER_FOCUS_WINDOW: 30,
+
+      properties: {
+        checked: {
+          type: Boolean,
+          notify: true,
+          reflectToAttribute: true,
+          observer: '_checkedChanged'
+        },
+
+        disabled: {
+          type: Boolean,
+          reflectToAttribute: true,
+          observer: '_disabledChanged'
+        },
+
+        noink: {
+          type: Boolean,
+          observer: '_noinkChanged'
+        },
+      },
+
+      created: function() {
+        this._lastDown = 0;
+        this._listenersAttached = false;
+      },
+
+      attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          if (!this._listenersAttached) {
+            this.listen(this, 'tap', '_onTap');
+            this.listen(this, 'keypress', '_onKeypress');
+            this.listen(this, 'keyup', '_onKeyup');
+            this.listen(this, 'down', '_onDown');
+            this.listen(this, 'up', '_onUp');
+            this.listen(this, 'focus', '_onFocus');
+            this.listen(this, 'blur', '_onBlur');
+            this._listenersAttached = true;
+          }
+          this.setAttribute('aria-checked', !!this.checked);
+          this.setAttribute('aria-disabled', !!this.disabled);
+        });
+      },
+
+      _checkedChanged: function(checked) {
+        this.setAttribute('aria-checked', checked);
+      },
+
+      _disabledChanged: function(disabled) {
+        this.setAttribute('aria-disabled', disabled);
+        this.style.pointerEvents = disabled ? 'none' : '';
+        this.tabIndex = disabled ? -1 : 0;
+      },
+
+      _noinkChanged: function(noink) {
+        if (this._ripple) {
+          this._ripple.noink = noink;
+        }
+      },
+
+      _updateInkSize: function() {
+        var inkSize = this.getComputedStyleValue('--calculated-paper-checkbox-ink-size');
+        // If unset, compute and set the default `--paper-checkbox-ink-size`.
+        if (inkSize === '-1px') {
+          var checkboxSize = parseFloat(this.getComputedStyleValue('--calculated-paper-checkbox-size'));
+          var defaultInkSize = Math.floor((8 / 3) * checkboxSize);
+
+          // The checkbox and ripple need to have the same parity so that their
+          // centers align.
+          if (defaultInkSize % 2 !== checkboxSize % 2) {
+            defaultInkSize++;
+          }
+
+          this.customStyle['--paper-checkbox-ink-size'] = defaultInkSize + 'px';
+          this.updateStyles();
+        }
+      },
+
+      _onTap: function() {
+        if (!this.disabled) {
+          this.checked = !this.checked;
+        }
+      },
+
+      _isSpaceOrEnterKeyEvent: function(event) {
+        var isSpace = event.key === ' ' || event.code === 'Space' || event.keyCode === 32;
+        var isEnter = event.key === 'Enter' || event.code === 'Enter' || event.keyCode === 13;
+        return isSpace || isEnter;
+      },
+
+      _onKeypress: function(event) {
+        if (this._isSpaceOrEnterKeyEvent(event)) {
+          event.preventDefault();
+          this._getRipple().holdDown = true;
+        }
+      },
+
+      _onKeyup: function(event) {
+        if (this._isSpaceOrEnterKeyEvent(event)) {
+          if (!this.disabled) {
+            this.checked = !this.checked;
+          }
+        }
+      },
+
+      _onDown: function() {
+        this._updateInkSize();
+        var ripple = this._getRipple();
+        // If there was no earlier 'down' event, then the call to `_getRipple`
+        // above will have created it but the newly created ripple will not have
+        // received the event.
+        if (this._lastDown === 0 && !this.noink) {
+          ripple.downAction();
+        }
+        this._lastDown = Date.now();
+      },
+
+      _onUp: function() {
+        this._getRipple().holdDown = false;
+      },
+
+      _onFocus: function() {
+        this._updateInkSize();
+        var ripple = this._getRipple();
+        if ((Date.now() - this._lastDown) > this.__POINTER_FOCUS_WINDOW) {
+          ripple.holdDown = true;
+          this._lastDown = 0;
+          ripple.downAction();
+        }
+      },
+
+      _onBlur: function() {
+        var ripple = this._getRipple()
+        ripple.holdDown = false;
+        ripple.upAction();
+      },
+
+      _getRipple: function() {
+        if (!this._ripple) {
+          var ripple = document.createElement('paper-ripple');
+          ripple.center = true;
+          ripple.classList.add('circle');
+          ripple.noink = this.noink;
+          Polymer.dom(this.root).appendChild(ripple);
+          this._ripple = ripple;
+        }
+        return this._ripple;
+      },
+    });
+  </script>
+</dom-module>
