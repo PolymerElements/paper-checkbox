@@ -22,17 +22,17 @@
   "ignore": [],
   "dependencies": {
     "polymer": "Polymer/polymer#2.0-preview",
-    "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#^1.0.0",
-    "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
+    "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#2.0-preview",
+    "paper-behaviors": "PolymerElements/paper-behaviors#2.0-preview",
     "paper-ripple": "PolymerElements/paper-ripple#2.0-preview",
     "paper-styles": "PolymerElements/paper-styles#2.0-preview",
     "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#2.0-preview"
   },
   "devDependencies": {
-    "webcomponentsjs": "webcomponents/webcomponentsjs#v1-polymer-edits",
-    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#v1",
+    "web-component-tester": "^5.0.0",
     "test-fixture": "PolymerElements/test-fixture#custom-elements-v1",
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-component-page": "PolymerElements/iron-component-page#2.0-preview",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#2.0-preview"
@@ -40,11 +40,7 @@
   "main": "paper-checkbox.html",
   "resolutions": {
     "polymer": "2.0-preview",
-    "paper-styles": "2.0-preview",
-    "iron-flex-layout": "2.0-preview",
-    "paper-ripple": "2.0-preview",
-    "iron-a11y-keys-behavior": "2.0-preview",
-    "test-fixture": "custom-elements-v1",
-    "webcomponentsjs": "v1"
+    "webcomponentsjs": "v1",
+    "test-fixture": "custom-elements-v1"
   }
 }
