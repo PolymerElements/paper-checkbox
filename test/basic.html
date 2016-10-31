@@ -206,8 +206,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('ink size', function() {
         var checkboxes;
 
-        setup(function() {
+        setup(function(done) {
           checkboxes = fixture('WithDifferentSizes2');
+
+          // TODO(bicknellr): Remove the `afterNextRender` call and in the tests
+          // once crbug.com/516550 is resolved.
+          Promise.all(checkboxes.map(function(checkbox) {
+            return new Promise(function(resolve, reject) {
+              Polymer.RenderStatus.afterNextRender(checkbox, function() {
+                resolve();
+              });
+            });
+          })).then(function() {
+            done();
+          });
         });
 
         test('`--paper-checkbox-ink-size` sets the ink size', function() {
