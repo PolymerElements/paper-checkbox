@@ -227,8 +227,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     </style>
 
     <div id="checkboxContainer">
-      <div id="checkbox">
-        <div id="checkmark"></div>
+      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+        <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
       </div>
     </div>
 
@@ -267,11 +267,6 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       },
 
-      observers: [
-        '_computeCheckboxClass(checked, invalid)',
-        '_computeCheckmarkClass(checked)'
-      ],
-
       attached: function() {
         // TODO(bicknellr): Remove the `afterNextRender` call and in the tests
         // once crbug.com/516550 is resolved.
@@ -296,28 +291,18 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       _computeCheckboxClass: function(checked, invalid) {
-        var checkboxClassList = this.$.checkbox.classList;
-
+        var className = '';
         if (checked) {
-          checkboxClassList.add('checked');
-        } else {
-          checkboxClassList.remove('checked');
+          className += 'checked ';
         }
-
         if (invalid) {
-          checkboxClassList.add('invalid');
-        } else {
-          checkboxClassList.remove('invalid');
+          className += 'invalid';
         }
+        return className;
       },
 
       _computeCheckmarkClass: function(checked) {
-        var checkmarkClassList = this.$.checkmark.classList;
-        if (checked) {
-          checkmarkClassList.remove('hidden');
-        } else {
-          checkmarkClassList.add('hidden');
-        }
+        return checked ? '' : 'hidden';
       },
 
       // create ripple inside the checkboxContainer
