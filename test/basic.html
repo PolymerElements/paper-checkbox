@@ -209,8 +209,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         setup(function(done) {
           checkboxes = fixture('WithDifferentSizes2');
 
-          // TODO(bicknellr): Remove the `afterNextRender` call and in the tests
-          // once crbug.com/516550 is resolved.
+          // Wait for all checkboxes to set their default ink sizes, if any.
+          // See polymer#4009 for more details.
           Promise.all(checkboxes.map(function(checkbox) {
             return new Promise(function(resolve, reject) {
               Polymer.RenderStatus.afterNextRender(checkbox, function() {

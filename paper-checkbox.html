@@ -268,8 +268,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       },
 
       attached: function() {
-        // TODO(bicknellr): Remove the `afterNextRender` call and in the tests
-        // once crbug.com/516550 is resolved.
+        // Wait until styles have resolved to check for the default sentinel.
+        // See polymer#4009 for more details.
         Polymer.RenderStatus.afterNextRender(this, function() {
           var inkSize = this.getComputedStyleValue('--calculated-paper-checkbox-ink-size').trim();
           // If unset, compute and set the default `--paper-checkbox-ink-size`.
