@@ -45,8 +45,17 @@ Example:
         margin-top: 2px;
         max-width: 150px;
       }
+
+      #container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
     </style>
-    <next-code-block></next-code-block>
+
+    <div id="container">
+      <next-code-block></next-code-block>
+    </div>
   </template>
 </custom-element-demo>
 ```
