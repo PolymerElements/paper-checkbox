@@ -183,13 +183,20 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         position: relative;
         display: inline-block;
         vertical-align: middle;
-        padding-left: var(--paper-checkbox-label-spacing, 8px);
         white-space: normal;
         line-height: normal;
         color: var(--paper-checkbox-label-color, var(--primary-text-color));
         @apply(--paper-checkbox-label);
       }
 
+      .checkboxLabel-left {
+        padding-right: var(--paper-checkbox-label-spacing, 8px);
+      }
+	  
+      .checkboxLabel-right {
+        padding-left: var(--paper-checkbox-label-spacing, 8px);
+      }
+	  
       :host([checked]) #checkboxLabel {
         color: var(--paper-checkbox-label-checked-color, var(--paper-checkbox-label-color, var(--primary-text-color)));
         @apply(--paper-checkbox-label-checked);
@@ -226,13 +233,19 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
     </style>
 
+    <template is="dom-if" if="[[leftSideLabel]]">
+      <div id="checkboxLabel" class="checkboxLabel-left"><content></content></div>
+    </template>
+
     <div id="checkboxContainer">
       <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
         <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
       </div>
     </div>
 
-    <div id="checkboxLabel"><content></content></div>
+    <template is="dom-if" if="[[!leftSideLabel]]">
+      <div id="checkboxLabel" class="checkboxLabel-right"><content></content></div>
+    </template>
   </template>
 
   <script>
@@ -264,6 +277,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ariaActiveAttribute: {
           type: String,
           value: 'aria-checked'
+        },
+        /**
+         * Whether to position the label on the left side
+         */
+        leftSideLabel : {
+          type: Boolean,
+          value: false
         }
       },
 

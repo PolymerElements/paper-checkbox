@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../iron-test-helpers/mock-interactions.js"></script>
+  <script src="../../iron-test-helpers/test-helpers.js"></script>
 
   <link rel="import" href="../paper-checkbox.html">
 
@@ -109,9 +110,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     suite('defaults', function() {
       var c1;
+      var c2;
 
       setup(function() {
         c1 = fixture('NoLabel');
+        c2 = fixture('WithLabel');
       });
 
       test('check checkbox via click', function(done) {
@@ -176,6 +179,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.isTrue(tiny.width < normal.width);
         assert.isTrue(normal.width < giant.width);
         assert.isTrue(giant.width === 50);
+      });
+
+      test('label is positioned on the right side by default', function() {
+        var el = Polymer.dom(c2.root);
+        forceXIfStamp(el);
+        var firstDiv = el.querySelector('div');
+        assert.isTrue(firstDiv.id =='checkboxContainer');
+        assert.ok(el.querySelector('.checkboxLabel-right'), 'Label exists and is on the right side');
+        assert.notOk(el.querySelector('.checkboxLabel-left'), 'Left side label is not present');
+      });
+
+      test('label is positioned on the left side when leftSideLabel is true', function() {
+        c2.leftSideLabel = true;
+        var el = Polymer.dom(c2.root);
+        setTimeout(function() {
+          forceXIfStamp(el);
+          var firstDiv = el.querySelector('div');
+          assert.isTrue(firstDiv.id == 'checkboxLabel');
+          assert.isTrue(firstDiv.classList.contains('checkboxLabel-left'));
+          assert.ok(el.querySelector('#checkboxContainer'), 'The checkbox is present');
+          assert.notOk(el.querySelector('.checkboxLabel-right'), 'Right side label is not present');
+        });
       });
 
       suite('checkbox line-height', function() {
