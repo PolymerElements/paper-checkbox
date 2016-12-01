@@ -37,6 +37,27 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#2.0-preview"
   },
+  "variants": {
+    "1.x": {
+      "dependencies": {
+        "polymer": "Polymer/polymer#^1.6.0",
+        "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#^1.0.0",
+        "paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
+        "paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
+        "paper-styles": "PolymerElements/paper-styles#^1.1.0",
+        "iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#^1.0.0"
+      },
+      "devDependencies": {
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+        "web-component-tester": "^4.0.0",
+        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+        "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
+        "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.0.0"
+      }
+    }
+  },
   "main": "paper-checkbox.html",
   "resolutions": {
     "polymer": "2.0-preview",
