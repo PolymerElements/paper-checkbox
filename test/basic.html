@@ -108,6 +108,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </test-fixture>
 
   <script>
+    function afterNextRenderAll(elements, callback) {
+      var renderedCount = 0;
+
+      function elementRendered() {
+        renderedCount++;
+        if (renderedCount === elements.length) {
+          callback();
+        }
+      }
+
+      elements.forEach(function(element) {
+        Polymer.RenderStatus.afterNextRender(element, elementRendered);
+      });
+    }
+
     suite('defaults', function() {
       var c1;
 
@@ -162,21 +177,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.isTrue(c1.validate());
       });
 
-      test('checkbox can check sizes', function() {
-        var c2 = fixture('WithDifferentSizes');
-        var normal = c2[0].getBoundingClientRect();
-        var giant = c2[1].getBoundingClientRect();
-        var tiny = c2[2].getBoundingClientRect();
+      test('checkbox can check sizes', function(done) {
+        var checkboxes = fixture('WithDifferentSizes');
+        // Wait for all checkboxes to set their default ink sizes, if any.
+        // See polymer#4009 for more details.
+        afterNextRenderAll(checkboxes, function() {
+          var normal = checkboxes[0].getBoundingClientRect();
+          var giant = checkboxes[1].getBoundingClientRect();
+          var tiny = checkboxes[2].getBoundingClientRect();
 
-        assert.isTrue(5 === tiny.height);
-        assert.isTrue(tiny.height < normal.height);
-        assert.isTrue(normal.height < giant.height);
-        assert.isTrue(giant.height <= 50);
-        
-        assert.isTrue(5 === tiny.width);
-        assert.isTrue(tiny.width < normal.width);
-        assert.isTrue(normal.width < giant.width);
-        assert.isTrue(giant.width === 50);
+          assert.isTrue(5 === tiny.height);
+          assert.isTrue(tiny.height < normal.height);
+          assert.isTrue(normal.height < giant.height);
+          assert.isTrue(giant.height <= 50);
+
+          assert.isTrue(5 === tiny.width);
+          assert.isTrue(tiny.width < normal.width);
+          assert.isTrue(normal.width < giant.width);
+          assert.isTrue(giant.width === 50);
+          done();
+        });
       });
 
       suite('checkbox line-height', function() {
@@ -209,18 +229,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         setup(function(done) {
           checkboxes = fixture('WithDifferentSizes2');
-
           // Wait for all checkboxes to set their default ink sizes, if any.
           // See polymer#4009 for more details.
-          Promise.all(checkboxes.map(function(checkbox) {
-            return new Promise(function(resolve, reject) {
-              Polymer.RenderStatus.afterNextRender(checkbox, function() {
-                resolve();
-              });
-            });
-          })).then(function() {
-            done();
-          });
+          afterNextRenderAll(checkboxes, done);
         });
 
         test('`--paper-checkbox-ink-size` sets the ink size', function() {
