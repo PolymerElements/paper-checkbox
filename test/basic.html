@@ -19,43 +19,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../iron-test-helpers/mock-interactions.js"></script>
 
   <link rel="import" href="../paper-checkbox.html">
-
-  <style is="custom-style">
-    paper-checkbox.no-label-spacing {
-      --paper-checkbox-label-spacing: 0;
-    }
-
-    paper-checkbox.tiny {
-      --paper-checkbox-size: 5px;
-    }
-
-    paper-checkbox.medium {
-      --paper-checkbox-size: 37px;
-    }
-
-    paper-checkbox.giant {
-      --paper-checkbox-size: 50px;
-    }
-
-    paper-checkbox.enormous {
-      --paper-checkbox-size: 71px;
-    }
-
-    paper-checkbox.custom-ink-size {
-      --paper-checkbox-size: 25px;
-      --paper-checkbox-ink-size: 30px;
-    }
-
-    paper-checkbox.large-line-height {
-      line-height: 3;
-    }
-
-    paper-checkbox.small-line-height {
-      line-height: 0.25;
-    }
-  </style>
 </head>
 <body>
+  <custom-style>
+    <style is="custom-style">
+      paper-checkbox.no-label-spacing {
+        --paper-checkbox-label-spacing: 0;
+      }
+
+      paper-checkbox.tiny {
+        --paper-checkbox-size: 5px;
+      }
+
+      paper-checkbox.medium {
+        --paper-checkbox-size: 37px;
+      }
+
+      paper-checkbox.giant {
+        --paper-checkbox-size: 50px;
+      }
+
+      paper-checkbox.enormous {
+        --paper-checkbox-size: 71px;
+      }
+
+      paper-checkbox.custom-ink-size {
+        --paper-checkbox-size: 25px;
+        --paper-checkbox-ink-size: 30px;
+      }
+
+      paper-checkbox.large-line-height {
+        line-height: 3;
+      }
+
+      paper-checkbox.small-line-height {
+        line-height: 0.25;
+      }
+    </style>
+  <custom-style>
 
   <test-fixture id="NoLabel">
     <template>
