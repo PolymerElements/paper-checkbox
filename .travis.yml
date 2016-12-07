@@ -1,9 +1,8 @@
 language: node_js
 sudo: required
 before_script:
-  - npm install -g bower polylint web-component-tester eslint eslint-plugin-html
-  - bower install
-  - polylint
+  - npm install -g bower polylint web-component-tester@next eslint eslint-plugin-html polymer-cli@next
+  - polymer install --variants
   - eslint *.html test/*.html
 env:
   global:
