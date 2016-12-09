@@ -79,6 +79,10 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         outline: none;
       }
 
+      :host([disabled]) ::content a {
+        pointer-events: initial;
+      }
+
       .hidden {
         display: none;
       }
