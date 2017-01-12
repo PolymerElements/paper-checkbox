@@ -31,7 +31,7 @@
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#v1",
     "web-component-tester": "^5.0.0",
-    "test-fixture": "PolymerElements/test-fixture#custom-elements-v1",
+    "test-fixture": "PolymerElements/test-fixture#^2.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#2.0-preview",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
@@ -62,6 +62,6 @@
   "resolutions": {
     "polymer": "2.0-preview",
     "webcomponentsjs": "v1",
-    "test-fixture": "custom-elements-v1"
+    "test-fixture": "^2.0.0"
   }
 }
