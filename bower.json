@@ -22,7 +22,7 @@
   "main": "paper-checkbox.html",
   "ignore": [],
   "dependencies": {
-    "polymer": "Polymer/polymer#2.0-preview",
+    "polymer": "Polymer/polymer#^2.0.0-rc.1",
     "iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#2.0-preview",
     "paper-behaviors": "PolymerElements/paper-behaviors#2.0-preview",
     "paper-ripple": "PolymerElements/paper-ripple#2.0-preview",
