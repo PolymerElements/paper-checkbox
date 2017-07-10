@@ -43,6 +43,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-checkbox-size: 71px;
       }
 
+      paper-checkbox.tiny-other-units {
+        --paper-checkbox-size: 0.5rem;
+      }
+
+      paper-checkbox.medium-other-units {
+        --paper-checkbox-size: 1.25em;
+      }
+
+      paper-checkbox.giant-other-units {
+        --paper-checkbox-size: 2.5in;
+      }
+
+      paper-checkbox.enormous-other-units {
+        --paper-checkbox-size: 25vmin;
+      }
+
       paper-checkbox.custom-ink-size {
         --paper-checkbox-size: 25px;
         --paper-checkbox-ink-size: 30px;
@@ -91,6 +107,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-checkbox class="medium"></paper-checkbox>
       <paper-checkbox class="giant"></paper-checkbox>
       <paper-checkbox class="enormous"></paper-checkbox>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="WithNonPxSizes">
+    <template>
+      <paper-checkbox class="tiny-other-units"></paper-checkbox>
+      <paper-checkbox class="medium-other-units"></paper-checkbox>
+      <paper-checkbox class="giant-other-units"></paper-checkbox>
+      <paper-checkbox class="enormous-other-units"></paper-checkbox>
     </template>
   </test-fixture>
 
@@ -225,6 +250,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       suite('ink size', function() {
+        function cssLengthToPx(cssLengthText) {
+          var div = document.createElement('div');
+          div.style.width = cssLengthText;
+          document.body.appendChild(div);
+          var lengthPx = div.getBoundingClientRect().width;
+          document.body.removeChild(div);
+          return lengthPx;
+        }
+
         var checkboxes;
 
         setup(function(done) {
@@ -242,25 +276,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         test('ink sizes are near (8/3 * checkbox size) by default', function() {
           checkboxes.forEach(function(checkbox) {
-            var size = parseFloat(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'), 10);
-            var inkSize = parseFloat(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'), 10);
+            var size = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'));
+            var inkSize = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'));
             assert.approximately(inkSize / size, 8 / 3, 0.1);
+          });
+        });
+
+        test('ink sizes are near (8/3 * checkbox size) when using non-px sizes', function(done) {
+          var checkboxes = fixture('WithNonPxSizes');
+          afterNextRenderAll(checkboxes, function() {
+            checkboxes.forEach(function(checkbox) {
+              var size = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'));
+              var inkSize = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'));
+              assert.approximately(inkSize / size, 8 / 3, 0.1);
+            });
+            done();
           });
         });
 
         test('ink sizes are integers', function() {
           checkboxes.forEach(function(checkbox) {
-            var unparsedInkSize = checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size');
-            var floatInkSize = parseFloat(unparsedInkSize, 10);
-            var intInkSize = parseInt(unparsedInkSize, 10);
-            assert.equal(floatInkSize, intInkSize);
+            var inkSize = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'));
+            assert.equal(inkSize, Math.floor(inkSize));
           });
         });
 
         test('ink size parity matches checkbox size parity (centers are aligned)', function() {
           checkboxes.forEach(function(checkbox) {
-            var size = parseInt(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'), 10);
-            var inkSize = parseInt(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'), 10);
+            var size = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'));
+            var inkSize = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'));
             assert.equal(size % 2, inkSize % 2);
           });
         });
