@@ -276,25 +276,22 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
           if (inkSize === '-1px') {
             var checkboxSizeText = this.getComputedStyleValue('--calculated-paper-checkbox-size').trim();
 
-            // Is the value not in units of 'px'?
-            if (!/[^a-zA-Z]px$/.test(checkboxSizeText)) {
-              this.updateStyles({
-                '--paper-checkbox-ink-size': 'calc(8 / 3 * ' + checkboxSizeText + ')',
-              });
-              return;
-            }
-
+            var units = checkboxSizeText.match(/[A-Za-z]+$/)[0] || 'px';
             var checkboxSize = parseFloat(checkboxSizeText, 10);
-            var defaultInkSize = Math.floor((8 / 3) * checkboxSize);
+            var defaultInkSize = (8 / 3) * checkboxSize;
 
-            // The checkbox and ripple need to have the same parity so that their
-            // centers align.
-            if (defaultInkSize % 2 !== checkboxSize % 2) {
-              defaultInkSize++;
+            if (units === 'px') {
+              defaultInkSize = Math.floor(defaultInkSize);
+
+              // The checkbox and ripple need to have the same parity so that their
+              // centers align.
+              if (defaultInkSize % 2 !== checkboxSize % 2) {
+                defaultInkSize++;
+              }
             }
 
             this.updateStyles({
-              '--paper-checkbox-ink-size': defaultInkSize + 'px',
+              '--paper-checkbox-ink-size': defaultInkSize + units,
             });
           }
         });
