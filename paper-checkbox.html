@@ -264,6 +264,17 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         ariaActiveAttribute: {
           type: String,
           value: 'aria-checked'
+        },
+
+        /**
+         * @attribute checked
+         * @type Boolean
+         */
+        checked: {
+          type: Boolean,
+          value: function() {
+            this.checked = this.checked | false;
+          }
         }
       },
 
