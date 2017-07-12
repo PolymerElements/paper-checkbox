@@ -34,10 +34,11 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent`
-`--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color`
-`--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
+`--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--secondary-text-color`
+`--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--secondary-text-color`
 `--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color`
 `--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
+`--paper-checkbox-disabled-color` | Checkbox border color when the input is disabled | `--disabled-text-color`
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
 `--paper-checkbox-label-color` | Label color | `--primary-text-color`
 `--paper-checkbox-label-checked-color` | Label color when the input is checked | `--paper-checkbox-label-color`
@@ -103,7 +104,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         left: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
         width: var(--calculated-paper-checkbox-ink-size);
         height: var(--calculated-paper-checkbox-ink-size);
-        color: var(--paper-checkbox-unchecked-ink-color, var(--primary-text-color));
+        color: var(--paper-checkbox-unchecked-ink-color, var(--secondary-text-color));
         opacity: 0.6;
         pointer-events: none;
       }
@@ -122,7 +123,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         box-sizing: border-box;
         height: 100%;
         border: solid 2px;
-        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        border-color: var(--paper-checkbox-unchecked-color, var(--secondary-text-color));
         border-radius: 2px;
         pointer-events: none;
         -webkit-transition: background-color 140ms, border-color 140ms;
@@ -208,11 +209,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
 
       :host([disabled]) #checkbox {
         opacity: 0.5;
-        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        border-color: var(--paper-checkbox-disabled-color, var(--disabled-text-color));
       }
 
       :host([disabled][checked]) #checkbox {
-        background-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
+        background-color: var(--paper-checkbox-disabled-color, var(--disabled-text-color));
         opacity: 0.5;
       }
 
