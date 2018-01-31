@@ -108,7 +108,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         pointer-events: none;
       }
 
-      :host-context([dir="rtl"]) #ink {
+      #ink:dir(rtl) {
         right: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
         left: auto;
       }
@@ -167,6 +167,11 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         fill: var(--paper-checkbox-checkmark-color, white);
       }
 
+      #checkmark:dir(rtl) {
+        -webkit-transform-origin: 50% 14%;
+        transform-origin: 50% 14%;
+      }
+
       /* label */
       #checkboxLabel {
         position: relative;
@@ -184,7 +189,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         @apply --paper-checkbox-label-checked;
       }
 
-      :host-context([dir="rtl"]) #checkboxLabel {
+      #checkboxLabel:dir(rtl) {
         padding-right: var(--paper-checkbox-label-spacing, 8px);
         padding-left: 0;
       }
