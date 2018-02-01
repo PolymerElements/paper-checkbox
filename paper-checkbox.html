@@ -113,7 +113,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         left: auto;
       }
 
-      #ink[checked] {
+      :host([checked]) #ink {
         color: var(--paper-checkbox-checked-ink-color, var(--primary-color));
       }
 
@@ -130,7 +130,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       /* checkbox checked animations */
-      #checkbox.checked #checkmark {
+      :host([checked]) #checkbox #checkmark {
         opacity: 1;
         -webkit-animation: checkmark-expand 140ms ease-out forwards;
         animation: checkmark-expand 140ms ease-out forwards;
@@ -154,7 +154,7 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         }
       }
 
-      #checkbox.checked {
+      :host([checked]) #checkbox {
         background-color: var(--paper-checkbox-checked-color, var(--primary-color));
         border-color: var(--paper-checkbox-checked-color, var(--primary-color));
       }
@@ -215,13 +215,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       /* invalid state */
-      #checkbox.invalid:not(.checked) {
+      :host([checked]) #checkbox.invalid {
         border-color: var(--paper-checkbox-error-color, var(--error-color));
       }
     </style>
 
     <div id="checkboxContainer">
-      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+      <div id="checkbox" class$="[[_computeCheckboxClass(invalid)]]">
         <svg id="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="5 5 14 14">
           <path d="M10 17l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
         </svg>
@@ -293,15 +293,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         });
       },
 
-      _computeCheckboxClass: function(checked, invalid) {
-        var className = '';
-        if (checked) {
-          className += 'checked ';
-        }
-        if (invalid) {
-          className += 'invalid';
-        }
-        return className;
+      _computeCheckboxClass: function(invalid) {
+        return invalid ? 'invalid' : '';
       },
 
       // create ripple inside the checkboxContainer
