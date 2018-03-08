@@ -1,0 +1,10 @@
+{
+  "name": "@polymer/paper-checkbox",
+  "private": true,
+  "description": "A material design checkbox",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/paper-checkbox"
+  },
+  "license": "BSD-3-Clause"
+}
