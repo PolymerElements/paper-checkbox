@@ -59,7 +59,6 @@ interface PaperCheckboxElement extends Polymer.Element, Polymer.PaperCheckedElem
    * Fired when the checked state changes.
    */
   ariaActiveAttribute: string|null|undefined;
-  hostAttributes: object|null;
   attached(): void;
 
   /**
