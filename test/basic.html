@@ -64,6 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-checkbox-ink-size: 30px;
       }
 
+      paper-checkbox.zero-size {
+        --paper-checkbox-size: 0;
+      }
+
       paper-checkbox.large-line-height {
         line-height: 3;
       }
@@ -72,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 0.25;
       }
     </style>
-  <custom-style>
+  </custom-style>
 
   <test-fixture id="NoLabel">
     <template>
@@ -129,6 +133,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <paper-checkbox class="large-line-height">Checkbox</paper-checkbox>
       <paper-checkbox class="small-line-height">Checkbox</paper-checkbox>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="WithZeroSize">
+    <template>
+      <paper-checkbox class="zero-size">Checkbox</paper-checkbox>
     </template>
   </test-fixture>
 
@@ -306,6 +316,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             var size = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-size'));
             var inkSize = cssLengthToPx(checkbox.getComputedStyleValue('--calculated-paper-checkbox-ink-size'));
             assert.equal(size % 2, inkSize % 2);
+          });
+        });
+
+        test('checkboxes with size `0` do not throw when computing the ink size', function(done) {
+          var checkbox = fixture('WithZeroSize');
+          afterNextRenderAll([checkbox], function() {
+            // Errors caught during afterNextRender callbacks, one of which is
+            // used to compute the ink size from the checkbox size, are thrown
+            // to a new task.
+            setTimeout(function() {
+              done();
+            }, 1);
           });
         });
       });
