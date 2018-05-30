@@ -221,13 +221,13 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       }
 
       /* invalid state */
-      #checkbox.invalid:not(.checked) {
+      :host([invalid]) #checkbox:not(.checked) {
         border-color: var(--paper-checkbox-error-color, var(--error-color));
       }
     </style>
 
     <div id="checkboxContainer">
-      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+      <div id="checkbox" class$="[[_computeCheckboxClass(checked)]]">
         <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
       </div>
     </div>
@@ -298,15 +298,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
         });
       },
 
-      _computeCheckboxClass: function(checked, invalid) {
-        var className = '';
-        if (checked) {
-          className += 'checked ';
-        }
-        if (invalid) {
-          className += 'invalid';
-        }
-        return className;
+      _computeCheckboxClass: function(checked) {
+        return checked ? 'checked' : '';
       },
 
       _computeCheckmarkClass: function(checked) {
