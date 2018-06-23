@@ -1,4 +1,4 @@
-<!--
+/**
 @license
 Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
@@ -6,13 +6,8 @@ The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
-
-<!--
+*/
+/**
 Material design: [Checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox)
 
 `paper-checkbox` is a button that can be either checked or unchecked.  User
@@ -54,17 +49,31 @@ This element applies the mixin `--paper-font-common-base` but does not import `p
 In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
 
 @demo demo/index.html
--->
+*/
+/*
+  FIXME(polymer-modulizer): the above comments were extracted
+  from HTML and may be out of place here. Review them and
+  then delete this comment!
+*/
+import '@polymer/polymer/polymer-legacy.js';
 
-<dom-module id="paper-checkbox">
-  <template strip-whitespace>
+import '@polymer/paper-styles/default-theme.js';
+import { PaperCheckedElementBehavior } from '@polymer/paper-behaviors/paper-checked-element-behavior.js';
+import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { afterNextRender } from '@polymer/polymer/lib/utils/render-status.js';
+import { PaperInkyFocusBehaviorImpl } from '@polymer/paper-behaviors/paper-inky-focus-behavior.js';
+const $_documentContainer = document.createElement('template');
+$_documentContainer.setAttribute('style', 'display: none;');
+
+$_documentContainer.innerHTML = `<dom-module id="paper-checkbox">
+  <template strip-whitespace="">
     <style>
       :host {
         display: inline-block;
         white-space: nowrap;
         cursor: pointer;
         --calculated-paper-checkbox-size: var(--paper-checkbox-size, 18px);
-        /* -1px is a sentinel for the default and is replaced in `attached`. */
+        /* -1px is a sentinel for the default and is replaced in \`attached\`. */
         --calculated-paper-checkbox-ink-size: var(--paper-checkbox-ink-size, -1px);
         @apply --paper-font-common-base;
         line-height: 0;
@@ -227,98 +236,99 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
     </style>
 
     <div id="checkboxContainer">
-      <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
-        <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
+      <div id="checkbox" class\$="[[_computeCheckboxClass(checked, invalid)]]">
+        <div id="checkmark" class\$="[[_computeCheckmarkClass(checked)]]"></div>
       </div>
     </div>
 
     <div id="checkboxLabel"><slot></slot></div>
   </template>
 
-  <script>
-    Polymer({
-      is: 'paper-checkbox',
+  
+</dom-module>`;
 
-      behaviors: [Polymer.PaperCheckedElementBehavior],
+document.head.appendChild($_documentContainer.content);
+Polymer({
+  is: 'paper-checkbox',
 
-      /** @private */
-      hostAttributes: {role: 'checkbox', 'aria-checked': false, tabindex: 0},
+  behaviors: [PaperCheckedElementBehavior],
 
-      properties: {
-        /**
-         * Fired when the checked state changes due to user interaction.
-         *
-         * @event change
-         */
+  /** @private */
+  hostAttributes: {role: 'checkbox', 'aria-checked': false, tabindex: 0},
 
-        /**
-         * Fired when the checked state changes.
-         *
-         * @event iron-change
-         */
-        ariaActiveAttribute: {type: String, value: 'aria-checked'}
-      },
+  properties: {
+    /**
+     * Fired when the checked state changes due to user interaction.
+     *
+     * @event change
+     */
 
-      attached: function() {
-        // Wait until styles have resolved to check for the default sentinel.
-        // See polymer#4009 for more details.
-        Polymer.RenderStatus.afterNextRender(this, function() {
-          var inkSize =
-              this.getComputedStyleValue('--calculated-paper-checkbox-ink-size')
-                  .trim();
-          // If unset, compute and set the default `--paper-checkbox-ink-size`.
-          if (inkSize === '-1px') {
-            var checkboxSizeText =
-                this.getComputedStyleValue('--calculated-paper-checkbox-size')
-                    .trim();
+    /**
+     * Fired when the checked state changes.
+     *
+     * @event iron-change
+     */
+    ariaActiveAttribute: {type: String, value: 'aria-checked'}
+  },
 
-            var units = 'px';
-            var unitsMatches = checkboxSizeText.match(/[A-Za-z]+$/);
-            if (unitsMatches !== null) {
-              units = unitsMatches[0];
-            }
+  attached: function() {
+    // Wait until styles have resolved to check for the default sentinel.
+    // See polymer#4009 for more details.
+    afterNextRender(this, function() {
+      var inkSize =
+          this.getComputedStyleValue('--calculated-paper-checkbox-ink-size')
+              .trim();
+      // If unset, compute and set the default `--paper-checkbox-ink-size`.
+      if (inkSize === '-1px') {
+        var checkboxSizeText =
+            this.getComputedStyleValue('--calculated-paper-checkbox-size')
+                .trim();
 
-            var checkboxSize = parseFloat(checkboxSizeText);
-            var defaultInkSize = (8 / 3) * checkboxSize;
+        var units = 'px';
+        var unitsMatches = checkboxSizeText.match(/[A-Za-z]+$/);
+        if (unitsMatches !== null) {
+          units = unitsMatches[0];
+        }
 
-            if (units === 'px') {
-              defaultInkSize = Math.floor(defaultInkSize);
+        var checkboxSize = parseFloat(checkboxSizeText);
+        var defaultInkSize = (8 / 3) * checkboxSize;
 
-              // The checkbox and ripple need to have the same parity so that their
-              // centers align.
-              if (defaultInkSize % 2 !== checkboxSize % 2) {
-                defaultInkSize++;
-              }
-            }
+        if (units === 'px') {
+          defaultInkSize = Math.floor(defaultInkSize);
 
-            this.updateStyles({
-              '--paper-checkbox-ink-size': defaultInkSize + units,
-            });
+          // The checkbox and ripple need to have the same parity so that their
+          // centers align.
+          if (defaultInkSize % 2 !== checkboxSize % 2) {
+            defaultInkSize++;
           }
+        }
+
+        this.updateStyles({
+          '--paper-checkbox-ink-size': defaultInkSize + units,
         });
-      },
-
-      _computeCheckboxClass: function(checked, invalid) {
-        var className = '';
-        if (checked) {
-          className += 'checked ';
-        }
-        if (invalid) {
-          className += 'invalid';
-        }
-        return className;
-      },
-
-      _computeCheckmarkClass: function(checked) {
-        return checked ? '' : 'hidden';
-      },
-
-      // create ripple inside the checkboxContainer
-      _createRipple: function() {
-        this._rippleContainer = this.$.checkboxContainer;
-        return Polymer.PaperInkyFocusBehaviorImpl._createRipple.call(this);
       }
-
     });
-  </script>
-</dom-module>
+  },
+
+  _computeCheckboxClass: function(checked, invalid) {
+    var className = '';
+    if (checked) {
+      className += 'checked ';
+    }
+    if (invalid) {
+      className += 'invalid';
+    }
+    return className;
+  },
+
+  _computeCheckmarkClass: function(checked) {
+    return checked ? '' : 'hidden';
+  },
+
+  // create ripple inside the checkboxContainer
+  _createRipple: function() {
+    this._rippleContainer = this.$.checkboxContainer;
+    return PaperInkyFocusBehaviorImpl._createRipple.call(this);
+  }
+
+});
