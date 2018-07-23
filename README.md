@@ -1,63 +1,86 @@
+[![Published on NPM](https://img.shields.io/npm/v/@polymer/paper-checkbox.svg)](https://www.npmjs.com/package/@polymer/paper-checkbox)
 [![Build status](https://travis-ci.org/PolymerElements/paper-checkbox.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-checkbox)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://webcomponents.org/element/@polymer/paper-checkbox)
 
 ## &lt;paper-checkbox&gt;
 
-`paper-checkbox` is a [material design checkbox](https://www.google.com/design/spec/components/selection-controls.html#selection-controls-checkbox). 
-User can tap the checkbox to check or uncheck it. Usually you use checkboxes
-to allow user to select multiple options from a set. If you have a single
-ON/OFF option, avoid using a single checkbox and use `paper-toggle-button`
-instead.
+`paper-checkbox` is a button that can be either checked or unchecked. User can
+tap the checkbox to check or uncheck it. Usually you use checkboxes to allow
+user to select multiple options from a set. If you have a single ON/OFF option,
+avoid using a single checkbox and use `paper-toggle-button` instead.
 
-Example:
-<!---
-```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="paper-checkbox.html">
-    <style is="custom-style">
-      paper-checkbox {
-        font-family: 'Roboto', sans-serif;
-        margin: 24px;
-      }
-        
-      paper-checkbox:first-child {
-        --primary-color: #ff5722;
-      }
-      
-      paper-checkbox.styled {
-        align-self: center;
-        border: 1px solid var(--paper-green-200);
-        padding: 8px 16px;
-        --paper-checkbox-checked-color: var(--paper-green-500);
-        --paper-checkbox-checked-ink-color: var(--paper-green-500);
-        --paper-checkbox-unchecked-color: var(--paper-green-900);
-        --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
-        --paper-checkbox-label-color: var(--paper-green-500);
-        --paper-checkbox-label-spacing: 0;
-        --paper-checkbox-margin: 8px 16px 8px 0;
-        --paper-checkbox-vertical-align: top;
-      }
+See: [Documentation](https://www.webcomponents.org/element/@polymer/paper-checkbox),
+  [Demo](https://www.webcomponents.org/element/@polymer/paper-checkbox/demo/demo/index.html).
 
-      paper-checkbox .subtitle {
-        display: block;
-        font-size: 0.8em;
-        margin-top: 2px;
-        max-width: 150px;
-      }
-    </style>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
+## Usage
+
+### Installation
+
 ```
--->
+npm install --save @polymer/paper-checkbox
+```
+
+### In an HTML file
+
 ```html
-<paper-checkbox checked>Checked</paper-checkbox>
-<paper-checkbox class="styled">
-  Checkbox
-  <span class="subtitle">
-    With a longer label
-  </span>
-</paper-checkbox>
-<paper-checkbox disabled>Disabled</paper-checkbox>
+<html>
+  <head>
+    <script type="module">
+      import '@polymer/paper-checkbox/paper-checkbox.js';
+    </script>
+  </head>
+  <body>
+    <paper-checkbox>Unchecked</paper-checkbox>
+    <paper-checkbox checked>Checked</paper-checkbox>
+    <paper-checkbox disabled>Disabled</paper-checkbox>
+  </body>
+</html>
+```
+
+### In a Polymer 3 element
+
+```js
+import {PolymerElement} from '@polymer/polymer/polymer-element.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+
+import '@polymer/paper-checkbox/paper-checkbox.js';
+
+class ExampleElement extends PolymerElement {
+  static get template() {
+    return html`
+      <paper-checkbox>Unchecked</paper-checkbox>
+      <paper-checkbox checked>Checked</paper-checkbox>
+      <paper-checkbox disabled>Disabled</paper-checkbox>
+    `;
+  }
+}
+
+customElements.define('example-element', ExampleElement);
+```
+
+## Contributing
+
+If you want to send a PR to this element, here are the instructions for running
+the tests and demo locally:
+
+### Installation
+
+```sh
+git clone https://github.com/PolymerElements/paper-checkbox
+cd paper-checkbox
+npm install
+npm install -g polymer-cli
+```
+
+### Running the demo locally
+
+```sh
+polymer serve --npm
+open http://127.0.0.1:<port>/demo/
+```
+
+### Running the tests
+
+```sh
+polymer test --npm
 ```
