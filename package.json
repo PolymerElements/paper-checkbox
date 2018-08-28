@@ -21,7 +21,7 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.22",
     "@polymer/iron-flex-layout": "^3.0.0-pre.22",
     "@polymer/iron-test-helpers": "^3.0.0-pre.22",
-    "@polymer/gen-typescript-declarations": "^1.5.0"
+    "@polymer/gen-typescript-declarations": "^1.5.1"
   },
   "scripts": {
     "format": "webmat",
