@@ -133,6 +133,8 @@ In order to apply the `Roboto` font to this element, make sure you've imported `
       #checkbox.checked #checkmark {
         -webkit-animation: checkmark-expand 140ms ease-out forwards;
         animation: checkmark-expand 140ms ease-out forwards;
+
+        @apply --paper-transition-easing;
       }
 
       @-webkit-keyframes checkmark-expand {
