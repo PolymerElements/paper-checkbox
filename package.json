@@ -19,8 +19,8 @@
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "wct-browser-legacy": "^1.0.1",
     "@polymer/iron-demo-helpers": "^3.0.1",
-    "@polymer/iron-flex-layout": "^3.0.0-pre.25",
-    "@polymer/iron-test-helpers": "^3.0.0-pre.25",
+    "@polymer/iron-flex-layout": "^3.0.0-pre.26",
+    "@polymer/iron-test-helpers": "^3.0.0-pre.26",
     "@polymer/gen-typescript-declarations": "^1.5.1"
   },
   "scripts": {
@@ -33,10 +33,10 @@
   "author": "The Polymer Authors",
   "dependencies": {
     "@polymer/polymer": "^3.0.0",
-    "@polymer/iron-checked-element-behavior": "^3.0.0-pre.25",
-    "@polymer/paper-behaviors": "^3.0.0-pre.26",
-    "@polymer/paper-ripple": "^3.0.0-pre.25",
-    "@polymer/paper-styles": "^3.0.0-pre.25",
-    "@polymer/iron-a11y-keys-behavior": "^3.0.0-pre.25"
+    "@polymer/iron-checked-element-behavior": "^3.0.0-pre.26",
+    "@polymer/paper-behaviors": "^3.0.0-pre.27",
+    "@polymer/paper-ripple": "^3.0.0-pre.26",
+    "@polymer/paper-styles": "^3.0.0-pre.26",
+    "@polymer/iron-a11y-keys-behavior": "^3.0.0-pre.26"
   }
 }
