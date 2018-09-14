@@ -85,12 +85,16 @@ const template = html`<style>
     pointer-events: none;
     -webkit-transition: background-color 140ms, border-color 140ms;
     transition: background-color 140ms, border-color 140ms;
+
+    @apply --paper-transition-easing;
   }
 
   /* checkbox checked animations */
   #checkbox.checked #checkmark {
     -webkit-animation: checkmark-expand 140ms ease-out forwards;
     animation: checkmark-expand 140ms ease-out forwards;
+
+    @apply --paper-transition-easing;
   }
 
   @-webkit-keyframes checkmark-expand {
