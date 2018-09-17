@@ -85,12 +85,18 @@ const template = html`<style>
     pointer-events: none;
     -webkit-transition: background-color 140ms, border-color 140ms;
     transition: background-color 140ms, border-color 140ms;
+
+    transition-duration: var(--paper-checkbox-transition-duration, 140ms, 140ms);
+    -webkit-transition-duration: var(--paper-checkbox-transition-duration, 140ms, 140ms);
   }
 
   /* checkbox checked animations */
   #checkbox.checked #checkmark {
     -webkit-animation: checkmark-expand 140ms ease-out forwards;
     animation: checkmark-expand 140ms ease-out forwards;
+
+    animation-duration: var(--paper-checkbox-animation-duration, 140ms);
+    -webkit-animation-duration: var(--paper-checkbox-animation-duration, 140ms);
   }
 
   @-webkit-keyframes checkmark-expand {
