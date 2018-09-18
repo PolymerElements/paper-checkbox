@@ -86,8 +86,8 @@ const template = html`<style>
     -webkit-transition: background-color 140ms, border-color 140ms;
     transition: background-color 140ms, border-color 140ms;
 
-    -webkit-transition-duration: var(--paper-checkbox-transition-duration, 140ms, 140ms);
-    transition-duration: var(--paper-checkbox-transition-duration, 140ms, 140ms);
+    -webkit-transition-duration: var(--paper-checkbox-transition-duration, 140ms);
+    transition-duration: var(--paper-checkbox-transition-duration, 140ms);
   }
 
   /* checkbox checked animations */
