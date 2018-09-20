@@ -191,8 +191,8 @@ const template = html`<style>
 </style>
 
 <div id="checkboxContainer">
-  <div id="checkbox" class\$="[[_computeCheckboxClass(checked, invalid)]]">
-    <div id="checkmark" class\$="[[_computeCheckmarkClass(checked)]]"></div>
+  <div id="checkbox" class$="[[_computeCheckboxClass(checked, invalid)]]">
+    <div id="checkmark" class$="[[_computeCheckmarkClass(checked)]]"></div>
   </div>
 </div>
 
