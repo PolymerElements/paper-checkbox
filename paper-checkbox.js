@@ -268,6 +268,7 @@ Polymer({
     ariaActiveAttribute: {type: String, value: 'aria-checked'}
   },
 
+  /** @override */
   attached: function() {
     // Wait until styles have resolved to check for the default sentinel.
     // See polymer#4009 for more details.
