@@ -25,4 +25,6 @@ script:
   - >-
     if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test
     --module-resolution=node --npm -s 'default'; fi
-dist: trusty
+dist: xenial
+services:
+  - xvfb
