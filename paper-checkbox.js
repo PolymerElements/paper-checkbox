@@ -79,9 +79,10 @@ const template = html`<style>
     position: relative;
     box-sizing: border-box;
     height: 100%;
-    border: solid 2px;
     border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
-    border-radius: 2px;
+    border-radius: var(--paper-checkbox-border-radius, 2px);
+    border-width: var(--paper-checkbox-border-width, 2px);
+    border-style: var(--paper-checkbox-border-style, solid);
     pointer-events: none;
     -webkit-transition: background-color 140ms, border-color 140ms;
     transition: background-color 140ms, border-color 140ms;
@@ -236,6 +237,9 @@ Custom property | Description | Default
 `--paper-checkbox-ink-size` | Size of the ripple | `48px`
 `--paper-checkbox-margin` | Margin around the checkbox container | `initial`
 `--paper-checkbox-vertical-align` | Vertical alignment of the checkbox container | `middle`
+`--paper-checkbox-border-radius` | Border radius of checkbox | `2px`
+`--paper-checkbox-border-width` | Border width of checkbox | `2px`
+`--paper-checkbox-border-style` | Border style of checkbox | `solid`
 
 This element applies the mixin `--paper-font-common-base` but does not import
 `paper-styles/typography.html`. In order to apply the `Roboto` font to this
